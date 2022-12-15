@@ -1,19 +1,23 @@
 import "./App.sass";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./components/Login";
-import Signin from "./components/Signin";
-import { useState } from "react";
-import { authService } from "./firebase";
-import AppRouter from "./pages/AppRouter";
+import { useEffect, useState } from "react";
+import { auth } from "./firebase";
+import AppRouter from "./components/AppRouter";
 import { User } from "firebase/auth";
 
 export default function App() {
-  const [init, setInit] = useState<boolean>(false);
-  const [isLoggIn, setIsLoggIn] = useState(authService.currentUser as User);
+  const [isLoading, setLoading] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+      setLoading(true);
+    });
+  });
   return (
-    <>
-      {init ? <AppRouter isLoggedIn={isLoggIn} /> : <h3>Loading.........</h3>}
-    </>
+    <>{isLoading ? <AppRouter isLoggedIn={isLoggedIn} /> : "Loading....."}</>
   );
 }
