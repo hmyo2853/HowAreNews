@@ -2,8 +2,6 @@
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
-  signInWithPopup, //google 로그인을 팝업창에 띄우기 위해
-  GoogleAuthProvider, //google login 기능
   signInWithEmailAndPassword, // email 로그인
   createUserWithEmailAndPassword, //email 회원가입
 } from "firebase/auth";
@@ -23,7 +21,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const authService = getAuth();
+const auth = getAuth(app);
 
 interface Email {
   email: string;
@@ -32,12 +30,12 @@ interface Email {
 
 // Email 로그인
 const signupEmail = ({ email, password }: Email) => {
-  return createUserWithEmailAndPassword(authService, email, password);
+  return createUserWithEmailAndPassword(auth, email, password);
 };
 
 // Email 회원가입
 const loginEmail = ({ email, password }: Email) => {
-  return signInWithEmailAndPassword(authService, email, password);
+  return signInWithEmailAndPassword(auth, email, password);
 };
 
-export { app, authService, loginEmail, signupEmail };
+export { app, auth, loginEmail, signupEmail };
