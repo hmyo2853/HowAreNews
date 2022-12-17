@@ -3,6 +3,8 @@ import { User } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
+import { useQuery } from "react-query";
+import React from "react";
 
 // 로그인 이증 후 화면
 const Home = () => {
@@ -13,21 +15,25 @@ const Home = () => {
     navigate("/");
   };
 
-  useEffect(() => {
-    // 로그인 중일떄 정보 출력
-    auth.onAuthStateChanged((user: User | null) => {
+  // 로그인 중일떄 정보 출력
+  const getAuthState = async () => {
+    auth.onAuthStateChanged((user) => {
       setName(user);
     });
-  }, [name]);
+  };
+
+  useEffect(() => {
+    getAuthState();
+  }, []);
 
   return (
     <>
-      {name !== null ? (
+      {name && (
         <>
-          <h2>{name.displayName} 님, 반갑습니다.</h2>
-          <h3>로그인 계정 : {name.email}</h3>
+          <h2>{name?.displayName} 님, 반갑습니다.</h2>
+          <h3>로그인 계정 : {name?.email}</h3>
         </>
-      ) : null}
+      )}
       <Button variant="outlined" onClick={onLogOut}>
         Log Out
       </Button>
