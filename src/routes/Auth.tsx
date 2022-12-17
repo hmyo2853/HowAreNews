@@ -23,7 +23,8 @@ const Auth = () => {
     } = e;
     // email input change
     if (name === "email") {
-      setEmail(value);
+      // 특수문자 @._-  + 알파벳만 허용
+      setEmail(value.replace(/[^A-Za-z@._-]/gi, ""));
     } else if (name === "password") {
       // password input change
       setPwd(value);
