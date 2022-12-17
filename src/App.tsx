@@ -2,7 +2,6 @@ import "./App.sass";
 import { useEffect, useState } from "react";
 import { auth } from "./firebase";
 import AppRouter from "./components/AppRouter";
-import { User } from "firebase/auth";
 
 export default function App() {
   const [isLoading, setLoading] = useState<boolean>(false);
