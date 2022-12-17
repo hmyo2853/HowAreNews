@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 
-// 로그인 이증 후 화면
-const Home = () => {
+// 로그인 이증 후 헤더
+const Header = () => {
   const [name, setName] = useState<User | null>(null);
   const navigate = useNavigate();
   const onLogOut = () => {
@@ -22,6 +22,7 @@ const Home = () => {
 
   return (
     <>
+      <span>Home</span>
       {name !== null ? (
         <>
           <h2>{name.displayName} 님, 반갑습니다.</h2>
@@ -34,4 +35,4 @@ const Home = () => {
     </>
   );
 };
-export default Home;
+export default Header;
