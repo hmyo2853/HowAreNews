@@ -54,7 +54,7 @@ const Home = () => {
 
 	return (
 		<>
-			{_object && (
+			{isLoggedin() && (
 				<>
 					<h2>{name} 님, 반갑습니다.</h2>
 					<h3>로그인 계정 : {email}</h3>
