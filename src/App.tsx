@@ -1,22 +1,22 @@
 import "./App.sass";
 import { useEffect, useState } from "react";
 import { auth } from "./firebase";
-import AppRouter from "./components/AppRouter";
+import Auth from "./routes/Auth";
+import Home from "./routes/Home";
 
 export default function App() {
-  const [isLoading, setLoading] = useState<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(async (user) => {
       if (user) {
         setIsLoggedIn(true);
       } else {
         setIsLoggedIn(false);
       }
-      setLoading(true);
+      setIsLoading(false);
     });
   });
-  return (
-    <>{isLoading ? <AppRouter isLoggedIn={isLoggedIn} /> : "Loading....."}</>
-  );
+  if (isLoading) return "Loading.....";
+  return isLoggedIn ? <Home /> : <Auth />;
 }
