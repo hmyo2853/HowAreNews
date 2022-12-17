@@ -3,7 +3,8 @@ import { initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithEmailAndPassword, // email 로그인
-  createUserWithEmailAndPassword, //email 회원가입
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider, //email 회원가입
 } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries

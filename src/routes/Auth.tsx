@@ -2,12 +2,14 @@ import { Button, TextField } from "@mui/material";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
   updateProfile,
   User,
 } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../firebase";
-import styles from "../Auth.module.sass";
+import styles from "../routes/Auth.module.sass";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const Auth = () => {
   const [email, setEmail] = useState<string>("");
@@ -48,13 +50,29 @@ const Auth = () => {
     }
   };
 
+  //google 로그인
+  const onSocialGoogle = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const {
+      // @ts-ignore
+      target: { name },
+      // @ts-ignore
+    } = e as {
+      target: { name: string };
+    };
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider);
+  };
+
   const toggleAccount = () => setNewAccount((prev) => !prev);
 
   return (
     <div className={styles.Auth}>
+      <div>
+        <img src="../src/assets/main_logo.png" width="320px" />
+      </div>
       {newAccount ? (
         <>
-          <h1>회원가입</h1>
+          <h2>회원가입</h2>
           <TextField
             name="name"
             label="이름"
@@ -87,7 +105,7 @@ const Auth = () => {
         </>
       ) : (
         <>
-          <h1>로그인</h1>
+          <h2>로그인</h2>
           <TextField
             name="email"
             label="이메일"
@@ -115,10 +133,10 @@ const Auth = () => {
         onClick={onSubmit}
         disableElevation
       >
-        {newAccount ? "회원가입" : "로그인"}{" "}
+        {newAccount ? "회원가입" : "로그인"}
       </Button>
       <Button
-        variant="outlined"
+        variant="text"
         size="large"
         onClick={toggleAccount}
         disableElevation
@@ -126,11 +144,11 @@ const Auth = () => {
         {newAccount ? "기존 회원 로그인" : "새로 오셨나요?"}
       </Button>
       <div>{error}</div>
-      {/* <div>
-        <button onClick={onSocialClick} name="google">
+      <div>
+        <button onClick={onSocialGoogle} name="google">
           Continue with Google
         </button>
-      </div> */}
+      </div>
     </div>
   );
 };
