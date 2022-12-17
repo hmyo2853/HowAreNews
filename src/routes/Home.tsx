@@ -17,14 +17,18 @@ const Home = () => {
     auth.onAuthStateChanged((user: User | null) => {
       setName(user);
     });
-  }, []);
+  }, [name]);
 
   return (
     <>
       <span>Home</span>
       <button onClick={onLogOut}>Log Out</button>
-      <div>{name?.displayName}</div>
-      <div>{name?.email}</div>
+      {name !== null ? (
+        <>
+          <div>{name.displayName}</div>
+          <div>{name.email}</div>
+        </>
+      ) : null}
     </>
   );
 };
