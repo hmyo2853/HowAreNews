@@ -1,5 +1,6 @@
-import { Button, TextField } from "@mui/material";
+import { Button, IconButton, TextField } from "@mui/material";
 import {
+  AuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -7,9 +8,10 @@ import {
   User,
 } from "firebase/auth";
 import React, { useState } from "react";
-import { auth } from "../firebase";
+import { auth, Providers } from "../firebase";
 import styles from "../routes/Auth.module.sass";
-import { GoogleAuthProvider } from "firebase/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 const Auth = () => {
   const [email, setEmail] = useState<string>("");
@@ -17,6 +19,7 @@ const Auth = () => {
   const [pwd, setPwd] = useState<string>("");
   const [newAccount, setNewAccount] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { name, value },
@@ -51,17 +54,10 @@ const Auth = () => {
     }
   };
 
-  //google 로그인
-  const onSocialGoogle = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    const {
-      // @ts-ignore
-      target: { name },
-      // @ts-ignore
-    } = e as {
-      target: { name: string };
-    };
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
+  const onSocialLogin = async (provider: AuthProvider) => {
+    if (error !== "") setError("");
+    const data = await signInWithPopup(auth, provider);
+    console.log(data);
   };
 
   const toggleAccount = () => setNewAccount((prev) => !prev);
@@ -145,9 +141,20 @@ const Auth = () => {
         {newAccount ? "기존 회원 로그인" : "새로 오셨나요?"}
       </Button>
       <div>{error}</div>
-      <div>
-        <button onClick={onSocialGoogle} name="google">
-          Continue with Google
+      <div className={styles.Btn}>
+        <button
+          className={styles.google}
+          onClick={() => onSocialLogin(Providers.google)}
+          name="google"
+        >
+          <FontAwesomeIcon color="#ee3e21" icon={faGoogle} size="2x" />
+        </button>
+        <button
+          className={styles.github}
+          onClick={() => onSocialLogin(Providers.github)}
+          name="github"
+        >
+          <FontAwesomeIcon color="#222" icon={faGithub} size="2x" />
         </button>
       </div>
     </div>
