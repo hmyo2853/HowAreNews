@@ -4,7 +4,8 @@ import {
   getAuth,
   signInWithEmailAndPassword, // email 로그인
   createUserWithEmailAndPassword,
-  GoogleAuthProvider, //email 회원가입
+  GoogleAuthProvider,
+  GithubAuthProvider, //email 회원가입
 } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -37,6 +38,12 @@ const signupEmail = ({ email, password }: Email) => {
 // Email 회원가입
 const loginEmail = ({ email, password }: Email) => {
   return signInWithEmailAndPassword(auth, email, password);
+};
+
+// social 로그인
+export const Providers = {
+  google: new GoogleAuthProvider(),
+  github: new GithubAuthProvider(),
 };
 
 export { app, auth, loginEmail, signupEmail };
