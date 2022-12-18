@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { auth } from "./firebase";
 import Auth from "./routes/Auth";
 import Home from "./routes/Home";
+import Loading from "./components/Loading";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -17,6 +18,6 @@ export default function App() {
       setIsLoading(false);
     });
   });
-  if (isLoading) return "Loading.....";
+  if (isLoading) return <Loading />;
   return isLoggedIn ? <Home /> : <Auth />;
 }
