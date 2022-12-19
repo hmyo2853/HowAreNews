@@ -13,13 +13,15 @@ const Navigation = ({ name, email }: UserData) => {
 
   return (
     <div className={styles.Navigation}>
-      <Link to="/">Logo 자리</Link>
+      <Link to="/">
+        <img src="../src/assets/header_logo.png" width="100px" />
+      </Link>
       <>
         <h2>{name} 님, 반갑습니다.</h2>
         <h3>로그인 계정 : {email}</h3>
       </>
-      <Button variant="outlined" onClick={onLogOut}>
-        Log Out
+      <Button variant="text" onClick={onLogOut}>
+        로그아웃
       </Button>
       <Navi children={"비즈니스"} to={"/business"}></Navi>
       <Navi children={"엔터"} to={"/entertainment"}></Navi>
