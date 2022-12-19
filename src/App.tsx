@@ -1,13 +1,25 @@
 import "./App.sass";
 import { useEffect, useState } from "react";
 import { auth } from "./firebase";
-import Auth from "./routes/Auth";
-import Home from "./routes/Home";
+import Auth from "./pages/Auth";
+import Home from "./pages/Home";
 import Loading from "./components/Loading";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  Business,
+  Entertainment,
+  Health,
+  Science,
+  Sports,
+  Technology,
+} from "./components/category/Category";
+import Navigation from "./components/Navigation";
+import { User } from "firebase/auth";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -18,6 +30,33 @@ export default function App() {
       setIsLoading(false);
     });
   });
+
   if (isLoading) return <Loading />;
-  return isLoggedIn ? <Home /> : <Auth />;
+
+  return (
+    <>
+      {isLoggedIn ? (
+        <BrowserRouter>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/business" element={<Business />} />
+            <Route path="/entertainment" element={<Entertainment />} />
+            <Route path="/health" element={<Health />} />
+            <Route path="/science" element={<Science />} />
+            <Route path="/sports" element={<Sports />} />
+            <Route path="/technology" element={<Technology />} />
+            <Route path="/*" element={<Home />} />
+          </Routes>
+        </BrowserRouter>
+      ) : (
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Auth />} />
+            <Route path="/*" element={<Auth />} />
+          </Routes>
+        </BrowserRouter>
+      )}
+    </>
+  );
 }

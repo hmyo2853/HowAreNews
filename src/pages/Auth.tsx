@@ -1,4 +1,4 @@
-import { Button, IconButton, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import {
   AuthProvider,
   createUserWithEmailAndPassword,
@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import React, { useState } from "react";
 import { auth, Providers } from "../firebase";
-import styles from "../routes/Auth.module.sass";
+import styles from "./Auth.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 
@@ -19,6 +19,7 @@ const Auth = () => {
   const [pwd, setPwd] = useState<string>("");
   const [newAccount, setNewAccount] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
+  const [checkErr, setCheckErr] = useState<string>("");
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -27,7 +28,7 @@ const Auth = () => {
     // email input change
     if (name === "email") {
       // 특수문자 @._-  + 알파벳만 허용
-      setEmail(value.replace(/[^A-Za-z@._-]/gi, ""));
+      setEmail(value);
     } else if (name === "password") {
       // password input change
       setPwd(value);
@@ -37,6 +38,23 @@ const Auth = () => {
   };
 
   const onSubmit = async () => {
+    const regex = new RegExp(
+      "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
+    );
+    // 출력 에러 분기
+    if (name === "") {
+      return setCheckErr("이름를 입력해주세요.");
+    } else if (
+      !regex.test(email) ||
+      error == "Firebase: Error (auth/invalid-email)."
+    ) {
+      return setCheckErr("올바른 이메일 주소를 입력해주세요.");
+    } else if (pwd === "") {
+      return setCheckErr("비밀번호를 입력해주세요.");
+    } else if (pwd.length < 6) {
+      return setCheckErr("비밀번호를 6자 이상 입력해주세요.");
+    }
+
     try {
       // state 가 newAccount 라면
       if (newAccount) {
@@ -53,6 +71,7 @@ const Auth = () => {
       }
     }
   };
+  console.log(error);
 
   const onSocialLogin = async (provider: AuthProvider) => {
     if (error !== "") setError("");
@@ -140,7 +159,7 @@ const Auth = () => {
       >
         {newAccount ? "기존 회원 로그인" : "새로 오셨나요?"}
       </Button>
-      <div>{error}</div>
+      <div>{checkErr}</div>
       <div className={styles.Btn}>
         <button
           className={styles.google}
