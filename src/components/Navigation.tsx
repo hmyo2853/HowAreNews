@@ -1,4 +1,6 @@
 import { Button } from "@mui/material";
+import { User } from "firebase/auth";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 import { UserData } from "../howarenews";
@@ -6,10 +8,39 @@ import Navi from "./Navi";
 import styles from "./Navigation.module.sass";
 
 // header
-const Navigation = ({ name, email }: UserData) => {
+const Navigation = () => {
+  // user data
+  const [_object, _setObjcet] = useState<User | null>(null);
+  // set name, email
+  const [name, setName] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const onLogOut = () => {
     auth.signOut();
   };
+
+  // 로그인 중일떄 정보 출력
+  const getAuthState = async () => {
+    let __object: User | null = null;
+    let _worker_id: NodeJS.Timer | null = null;
+
+    auth.onAuthStateChanged((user) => {
+      __object = user;
+    });
+
+    _worker_id = setInterval(() => {
+      if (__object?.displayName) {
+        _worker_id && clearInterval(_worker_id);
+        _setObjcet(__object);
+      }
+    }, 50);
+  };
+
+  useEffect(() => {
+    getAuthState();
+    setName(_object?.displayName || null);
+    setEmail(_object?.email || null);
+  }, [_object]);
 
   return (
     <div className={styles.Navigation}>

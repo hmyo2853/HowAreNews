@@ -61,7 +61,7 @@ const Auth = () => {
   };
 
   const toggleAccount = () => setNewAccount((prev) => !prev);
-
+  console.log(newAccount);
   return (
     <div className={styles.Auth}>
       <div>
