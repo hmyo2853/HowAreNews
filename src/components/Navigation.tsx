@@ -14,7 +14,6 @@ const Navigation = () => {
   // set name, email
   const [name, setName] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
   const onLogOut = () => {
     auth.signOut();
   };
@@ -41,6 +40,7 @@ const Navigation = () => {
     setName(_object?.displayName || null);
     setEmail(_object?.email || null);
   }, [_object]);
+  console.log(_object);
 
   return (
     <div className={styles.Navigation}>
