@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 import { UserData } from "../howarenews";
 import Navi from "./Navi";
@@ -12,6 +13,7 @@ const Navigation = ({ name, email }: UserData) => {
 
   return (
     <div className={styles.Navigation}>
+      <Link to="/">Logo 자리</Link>
       <>
         <h2>{name} 님, 반갑습니다.</h2>
         <h3>로그인 계정 : {email}</h3>
