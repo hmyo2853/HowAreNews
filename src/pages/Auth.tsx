@@ -1,4 +1,4 @@
-import { Button, IconButton, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import {
   AuthProvider,
   createUserWithEmailAndPassword,
@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import React, { useState } from "react";
 import { auth, Providers } from "../firebase";
-import styles from "../routes/Auth.module.sass";
+import styles from "./Auth.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 
