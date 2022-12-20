@@ -7,7 +7,7 @@ import {
   updateProfile,
   User,
 } from "firebase/auth";
-import React, { KeyboardEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { auth, Providers } from "../firebase";
 import styles from "./Auth.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -71,12 +71,10 @@ const Auth = () => {
       }
     }
   };
-  console.log(error);
 
   const onSocialLogin = async (provider: AuthProvider) => {
     if (error !== "") setError("");
     const data = await signInWithPopup(auth, provider);
-    console.log(data);
   };
 
   const toggleAccount = () => {
