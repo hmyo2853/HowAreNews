@@ -59,7 +59,7 @@ const Navigation = () => {
       <Navi children={"건강"} to={"/health"}></Navi>
       <Navi children={"과학"} to={"/science"}></Navi>
       <Navi children={"스포츠"} to={"/sports"}></Navi>
-      <Navi children={"테크놀로지"} to={"/technology"}></Navi>
+      <Navi children={"IT · 기술"} to={"/technology"}></Navi>
     </div>
   );
 };

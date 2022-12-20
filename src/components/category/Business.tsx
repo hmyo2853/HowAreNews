@@ -1,7 +1,8 @@
 import { useQuery } from "react-query";
-import Card from "../card/Card";
+import NewsCard from "../card/NewsCard";
 import Loading from "../Loading";
 import { fetchNewsData } from "./Category.module";
+import styles from "./Category.module.sass";
 
 export default function Business() {
   const fetchBusiness = async () => {
@@ -15,11 +16,11 @@ export default function Business() {
 
   if (isLoading) return <Loading />;
   return (
-    <>
+    <div className={styles.Category}>
       <h1>비즈니스</h1>
       {data?.map((_data, i) => (
-        <Card key={i} data={_data} />
+        <NewsCard key={i} data={_data} />
       ))}
-    </>
+    </div>
   );
 }
