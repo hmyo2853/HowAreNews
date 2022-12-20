@@ -1,6 +1,11 @@
+import { PropsWithChildren } from "react";
 import { NewsAPI } from "../../howarenews";
 
-const Card = (data: NewsAPI) => {
+interface GetDataProps {
+  data: NewsAPI;
+}
+
+const Card = ({ data }: PropsWithChildren<GetDataProps>) => {
   return (
     <>
       <div>제목 : {data.title}</div>
