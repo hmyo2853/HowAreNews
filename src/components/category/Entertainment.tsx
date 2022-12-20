@@ -1,18 +1,16 @@
 import { useQuery } from "react-query";
-import { NewsAPI } from "../../howarenews";
+import { fetchNewsData } from "./Category.module";
 
 export default function Entertainment() {
-  const URL =
-    "https://newsapi.org/v2/top-headlines?country=kr&category=entertainment&apiKey=fdb223730c9a4641af46ee2787db1614";
+  const fetchEntertainment = async () => {
+    const URL =
+      "https://newsapi.org/v2/top-headlines?country=kr&category=entertainment&apiKey=fdb223730c9a4641af46ee2787db1614";
 
-  const fetchNewsData = async (): Promise<NewsAPI | void> => {
-    return fetch(URL).then(async (res) => {
-      const json = await res.json();
-      console.log(json);
-    });
+    const _object = await fetchNewsData(URL);
+    return _object;
   };
 
-  const { data } = useQuery("newsData", fetchNewsData);
+  const { data } = useQuery("newsData", fetchEntertainment);
   console.log(data);
   return <>엔터</>;
 }
