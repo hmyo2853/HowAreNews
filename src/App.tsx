@@ -1,4 +1,3 @@
-import "./App.sass";
 import { useEffect, useState } from "react";
 import { auth } from "./firebase";
 import Auth from "./pages/Auth";
@@ -14,7 +13,7 @@ import {
   Technology,
 } from "./components/category/Category";
 import Navigation from "./components/Navigation";
-import { User } from "firebase/auth";
+import styles from "./App.module.sass";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -34,7 +33,7 @@ export default function App() {
   if (isLoading) return <Loading />;
 
   return (
-    <>
+    <div className={styles.App}>
       {isLoggedIn ? (
         <BrowserRouter>
           <Navigation />
@@ -57,6 +56,6 @@ export default function App() {
           </Routes>
         </BrowserRouter>
       )}
-    </>
+    </div>
   );
 }
