@@ -1,7 +1,8 @@
 import { useQuery } from "react-query";
-import Card from "../card/Card";
+import NewsCard from "../card/NewsCard";
 import Loading from "../Loading";
 import { fetchNewsData } from "./Category.module";
+import styles from "./Category.module.sass";
 
 export default function Sports() {
   const fetchSports = async () => {
@@ -15,11 +16,11 @@ export default function Sports() {
 
   if (isLoading) return <Loading />;
   return (
-    <>
-      <h1>엔터테인먼트</h1>
+    <div className={styles.Category}>
+      <h1>스포츠</h1>
       {data?.map((_data, i) => (
-        <Card key={i} data={_data} />
+        <NewsCard key={i} data={_data} />
       ))}
-    </>
+    </div>
   );
 }
