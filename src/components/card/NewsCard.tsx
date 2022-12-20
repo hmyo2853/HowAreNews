@@ -8,6 +8,8 @@ import {
 import { PropsWithChildren } from "react";
 import { NewsAPI } from "../../howarenews";
 import styles from "./NewsCard.module.sass";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 interface GetDataProps {
   data: NewsAPI;
@@ -26,6 +28,9 @@ const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
           />
           <CardContent>
             <Typography gutterBottom variant="h6" component="div">
+              {data.source.name === "YouTube" ? (
+                <FontAwesomeIcon color="#ff0000" icon={faYoutube} size="1x" />
+              ) : null}
               {data.title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
