@@ -7,7 +7,7 @@ import {
   updateProfile,
   User,
 } from "firebase/auth";
-import React, { useState } from "react";
+import React, { KeyboardEventHandler, useState } from "react";
 import { auth, Providers } from "../firebase";
 import styles from "./Auth.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,7 +42,7 @@ const Auth = () => {
       "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
     );
     // 출력 에러 분기
-    if (name === "") {
+    if (name === "" && newAccount) {
       return setCheckErr("이름를 입력해주세요.");
     } else if (
       !regex.test(email) ||
@@ -79,7 +79,11 @@ const Auth = () => {
     console.log(data);
   };
 
-  const toggleAccount = () => setNewAccount((prev) => !prev);
+  const toggleAccount = () => {
+    setNewAccount((prev) => !prev);
+    // error 문구 초기화
+    setCheckErr("");
+  };
 
   return (
     <div className={styles.Auth}>
@@ -97,6 +101,11 @@ const Auth = () => {
             required
             value={name}
             onChange={onChange}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onSubmit();
+              }
+            }}
           />
 
           <TextField
@@ -107,6 +116,11 @@ const Auth = () => {
             required
             value={email}
             onChange={onChange}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onSubmit();
+              }
+            }}
           />
 
           <TextField
@@ -117,6 +131,11 @@ const Auth = () => {
             required
             value={pwd}
             onChange={onChange}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onSubmit();
+              }
+            }}
           />
         </>
       ) : (
@@ -130,6 +149,11 @@ const Auth = () => {
             required
             value={email}
             onChange={onChange}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onSubmit();
+              }
+            }}
           />
 
           <TextField
@@ -140,6 +164,11 @@ const Auth = () => {
             required
             value={pwd}
             onChange={onChange}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onSubmit();
+              }
+            }}
           />
         </>
       )}
@@ -147,6 +176,11 @@ const Auth = () => {
         variant="contained"
         size="large"
         onClick={onSubmit}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            onSubmit();
+          }
+        }}
         disableElevation
       >
         {newAccount ? "회원가입" : "로그인"}
