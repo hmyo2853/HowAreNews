@@ -1,21 +1,29 @@
 import { useQuery } from "react-query";
-import { NewsAPI } from "../howarenews";
+import NewsCard from "../components/card/NewsCard";
+import { fetchNewsData } from "../components/category/Category.module";
+import styles from "../components/category/Category.module.sass";
+import Loading from "../components/Loading";
 
 const Home = () => {
-  const URL =
-    "https://newsapi.org/v2/top-headlines?country=kr&apiKey=fdb223730c9a4641af46ee2787db1614";
+  const fetchHome = async () => {
+    const URL =
+      "https://newsapi.org/v2/top-headlines?country=kr&apiKey=fdb223730c9a4641af46ee2787db1614";
 
-  const fetchNewsData = async (): Promise<NewsAPI | void> => {
-    return fetch(URL).then(async (res) => {
-      const json = await res.json();
-      console.log(json);
-    });
+    return await fetchNewsData(URL);
   };
 
-  const { data } = useQuery("newsData", fetchNewsData);
-  console.log(data);
+  const { data, isLoading } = useQuery("Home", fetchHome);
 
-  return <>메인 홈</>;
+  if (isLoading) return <Loading />;
+
+  return (
+    <div className={styles.Category}>
+      <h1>홈</h1>
+      {data?.map((_data, i) => (
+        <NewsCard key={i} data={_data} />
+      ))}
+    </div>
+  );
 };
 
 export default Home;

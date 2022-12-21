@@ -35,12 +35,16 @@ const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
               {data.source.name === "YouTube" ? (
                 <FontAwesomeIcon color="#ff0000" icon={faYoutube} size="1x" />
               ) : null}
-              {data.title}
+              {data.title.length > 40
+                ? data.title.slice(0, 38) + "..."
+                : data.title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               {data.publishedAt}
               <br />
-              {data.description}
+              {data.description !== null && data.description.length > 60
+                ? data.description.slice(0, 58) + "..."
+                : data.description}
             </Typography>
           </CardContent>
         </CardActionArea>
