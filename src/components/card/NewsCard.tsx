@@ -20,21 +20,16 @@ const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
     <>
       <Card sx={{ minWidth: 320 }} className={styles.NewsCard}>
         <CardActionArea href={data.url} target="_blank">
-          {data.urlToImage === null ? (
-            <CardMedia
-              sx={{ maxHeight: 200 }}
-              component="img"
-              image="../src/assets/null_img.png"
-              alt={data.title}
-            />
-          ) : (
-            <CardMedia
-              sx={{ maxHeight: 200 }}
-              component="img"
-              image={data.urlToImage}
-              alt={data.title}
-            />
-          )}
+          <CardMedia
+            sx={{ maxHeight: 200 }}
+            component="img"
+            image={
+              data.urlToImage === null
+                ? "../src/assets/null_img.png"
+                : data.urlToImage
+            }
+            alt={data.title}
+          />
           <CardContent>
             <Typography gutterBottom variant="h6" component="div">
               {data.source.name === "YouTube" ? (
