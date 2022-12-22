@@ -16,6 +16,13 @@ interface GetDataProps {
 }
 
 const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
+  const checkString = (text: string) => {
+    for (let i = 0; i < text.length; i++) {
+      if (text.charCodeAt(i) === 65533) {
+        return false;
+      }
+    }
+  };
   return (
     <>
       <Card sx={{ minWidth: 320 }} className={styles.NewsCard}>
@@ -42,7 +49,11 @@ const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
             <Typography variant="body2" color="text.secondary">
               {data.publishedAt}
               <br />
-              {data.description !== null && data.description.length > 60
+              {data.description === null
+                ? null
+                : checkString(data.description) === false
+                ? null
+                : data.description.length > 60
                 ? data.description.slice(0, 58) + "..."
                 : data.description}
             </Typography>
