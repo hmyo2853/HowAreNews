@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import NewsCard from "../components/card/NewsCard";
 import { fetchNewsData } from "../components/category/Category.module";
 import styles from "../components/category/Category.module.sass";
-import Loading from "../components/Loading";
+import { Loading } from "../components/Loading";
 
 const Home = () => {
   const fetchHome = async () => {

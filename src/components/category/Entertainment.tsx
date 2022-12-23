@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import NewsCard from "../card/NewsCard";
-import Loading from "../Loading";
+import { Loading } from "../Loading";
 import { fetchNewsData } from "./Category.module";
 import styles from "./Category.module.sass";
 

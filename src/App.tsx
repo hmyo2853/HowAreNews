@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { auth } from "./firebase";
 import Auth from "./pages/Auth";
 import Home from "./pages/Home";
-import Loading from "./components/Loading";
+import { Loading } from "./components/Loading";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   Business,
