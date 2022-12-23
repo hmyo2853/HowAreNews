@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import styles from "../components/Navi.module.sass";
 
 interface NaviText {
   to: string;
@@ -6,7 +7,14 @@ interface NaviText {
 }
 
 const Navi = ({ to, children }: NaviText) => {
-  return <Link to={to}>{children}</Link>;
+  return (
+    <NavLink
+      to={to}
+      className={({ isActive }) => (isActive ? styles.LinkActive : "")}
+    >
+      {children}
+    </NavLink>
+  );
 };
 
 export default Navi;

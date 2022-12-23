@@ -3,7 +3,6 @@ import { User } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
-import { UserData } from "../howarenews";
 import Navi from "./Navi";
 import styles from "./Navigation.module.sass";
 
