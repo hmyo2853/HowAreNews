@@ -40,26 +40,27 @@ const Navigation = () => {
     setName(_object?.displayName || null);
     setEmail(_object?.email || null);
   }, [_object]);
-  console.log(_object);
 
   return (
     <div className={styles.Navigation}>
       <Link to="/">
-        <img src="../src/assets/header_logo.png" width="100px" />
+        <img src="../src/assets/header_logo.png" />
       </Link>
-      <>
-        <h2>{name} 님, 반갑습니다.</h2>
-        <h3>로그인 계정 : {email}</h3>
-      </>
-      <Button variant="text" onClick={onLogOut}>
-        로그아웃
-      </Button>
-      <Navi children={"비즈니스"} to={"/business"}></Navi>
-      <Navi children={"엔터"} to={"/entertainment"}></Navi>
-      <Navi children={"건강"} to={"/health"}></Navi>
-      <Navi children={"과학"} to={"/science"}></Navi>
-      <Navi children={"스포츠"} to={"/sports"}></Navi>
-      <Navi children={"IT · 기술"} to={"/technology"}></Navi>
+      <div className={styles.User__Link}>
+        <span>
+          <span>{name}</span> 님, 반갑습니다.
+        </span>
+        <span>로그인 계정 : {email}</span>
+        <Button variant="text" onClick={onLogOut}>
+          로그아웃
+        </Button>
+        <Navi children={"비즈니스"} to={"/business"}></Navi>
+        <Navi children={"엔터"} to={"/entertainment"}></Navi>
+        <Navi children={"건강"} to={"/health"}></Navi>
+        <Navi children={"과학"} to={"/science"}></Navi>
+        <Navi children={"스포츠"} to={"/sports"}></Navi>
+        <Navi children={"IT · 기술"} to={"/technology"}></Navi>
+      </div>
     </div>
   );
 };

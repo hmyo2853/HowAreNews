@@ -13,7 +13,6 @@ export default function Business() {
   };
 
   const { data, isLoading } = useQuery("Business", fetchBusiness);
-
   if (isLoading) return <Loading />;
   return (
     <div className={styles.Category}>
