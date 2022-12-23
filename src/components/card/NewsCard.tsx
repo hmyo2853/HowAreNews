@@ -43,19 +43,17 @@ const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
                   icon={faYoutube}
                 />
               ) : null}
-              {data.title.length > 50
-                ? data.title.slice(0, 48) + "..."
+              {data.title.length > 40
+                ? data.title.slice(0, 40) + "..."
                 : data.title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {data.publishedAt}
-              <br />
               {!data.description
                 ? null
                 : checkString(data.description) === false
                 ? null
-                : data.description.length > 60
-                ? data.description.slice(0, 58) + "..."
+                : data.description.length > 40
+                ? data.description.slice(0, 45) + "..."
                 : data.description}
             </Typography>
           </CardContent>

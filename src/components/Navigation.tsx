@@ -54,6 +54,7 @@ const Navigation = () => {
         <Button variant="text" onClick={onLogOut}>
           로그아웃
         </Button>
+        <Navi children={"홈"} to={"/"}></Navi>
         <Navi children={"비즈니스"} to={"/business"}></Navi>
         <Navi children={"엔터"} to={"/entertainment"}></Navi>
         <Navi children={"건강"} to={"/health"}></Navi>
