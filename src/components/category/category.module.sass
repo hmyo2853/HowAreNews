@@ -1,12 +1,39 @@
+@import "../../_mixin.scss"
+
 .Category
   width: 100%
   max-width: 1280px
   display: grid
-  grid-template-columns: 1fr 1fr 1fr
+  grid-template-columns: 1fr 1fr 1fr 1fr
+  margin-top: 1rem
 
   > div
-    margin: 0.4rem
-    border-radius: 4px
+    margin: 0 0.5rem 1.5rem 0.5rem
+    border-radius: 1rem
 
     img
-      border-radius: 4px 4px 0 0
+      border-radius: 1rem 1rem 0 0
+
+  > div > a > div > div
+    line-height: 1.5
+
+  > div
+    box-shadow: none
+
+  > div > a > div
+    padding-left: 0
+    padding-right: 0
+
+@include mobile
+  .Category
+    grid-template-columns: 1fr
+
+    > div
+      border-radius: 1rem
+
+@include tablet
+  .Category
+    grid-template-columns: 1fr 1fr
+    
+    > div
+      border-radius: 1rem

@@ -35,19 +35,21 @@ export default function App() {
   return (
     <div className={styles.App}>
       {isLoggedIn ? (
-        <BrowserRouter>
-          <Navigation />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/business" element={<Business />} />
-            <Route path="/entertainment" element={<Entertainment />} />
-            <Route path="/health" element={<Health />} />
-            <Route path="/science" element={<Science />} />
-            <Route path="/sports" element={<Sports />} />
-            <Route path="/technology" element={<Technology />} />
-            <Route path="/*" element={<Home />} />
-          </Routes>
-        </BrowserRouter>
+        <div className={styles.LoggedIn}>
+          <BrowserRouter>
+            <Navigation />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/business" element={<Business />} />
+              <Route path="/entertainment" element={<Entertainment />} />
+              <Route path="/health" element={<Health />} />
+              <Route path="/science" element={<Science />} />
+              <Route path="/sports" element={<Sports />} />
+              <Route path="/technology" element={<Technology />} />
+              <Route path="/*" element={<Home />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
       ) : (
         <BrowserRouter>
           <Routes>

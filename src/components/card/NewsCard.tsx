@@ -28,33 +28,32 @@ const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
       <Card sx={{ minWidth: 320 }} className={styles.NewsCard}>
         <CardActionArea href={data.url} target="_blank">
           <CardMedia
-            sx={{ maxHeight: 200 }}
+            sx={{ height: 160 }}
             component="img"
             image={
-              data.urlToImage === null
-                ? "../src/assets/null_img.png"
-                : data.urlToImage
+              !data.urlToImage ? "../src/assets/null_img.png" : data.urlToImage
             }
             alt={data.title}
           />
           <CardContent>
-            <Typography gutterBottom variant="h6" component="div">
+            <Typography gutterBottom variant="subtitle1" component="div">
               {data.source.name === "YouTube" ? (
-                <FontAwesomeIcon color="#ff0000" icon={faYoutube} size="1x" />
+                <FontAwesomeIcon
+                  className={styles.YoutubeIcon}
+                  icon={faYoutube}
+                />
               ) : null}
               {data.title.length > 40
-                ? data.title.slice(0, 38) + "..."
+                ? data.title.slice(0, 40) + "..."
                 : data.title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {data.publishedAt}
-              <br />
-              {data.description === null
+              {!data.description
                 ? null
                 : checkString(data.description) === false
                 ? null
-                : data.description.length > 60
-                ? data.description.slice(0, 58) + "..."
+                : data.description.length > 40
+                ? data.description.slice(0, 45) + "..."
                 : data.description}
             </Typography>
           </CardContent>
