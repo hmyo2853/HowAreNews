@@ -53,13 +53,13 @@ const Navigation = () => {
         <Button variant="text" onClick={onLogOut}>
           로그아웃
         </Button>
-        <Navi children={"홈"} to={"/"}></Navi>
-        <Navi children={"비즈니스"} to={"/business"}></Navi>
-        <Navi children={"엔터"} to={"/entertainment"}></Navi>
-        <Navi children={"건강"} to={"/health"}></Navi>
-        <Navi children={"과학"} to={"/science"}></Navi>
-        <Navi children={"스포츠"} to={"/sports"}></Navi>
-        <Navi children={"IT · 기술"} to={"/technology"}></Navi>
+        <Navi children={"홈"} to={"/"} />
+        <Navi children={"비즈니스"} to={"/business"} />
+        <Navi children={"엔터"} to={"/entertainment"} />
+        <Navi children={"건강"} to={"/health"} />
+        <Navi children={"과학"} to={"/science"} />
+        <Navi children={"스포츠"} to={"/sports"} />
+        <Navi children={"IT · 기술"} to={"/technology"} />
       </div>
     </div>
   );
