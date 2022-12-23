@@ -1,3 +1,5 @@
+@import "./mixin.scss"
+
 .App
   width: 100%
   height: 100vh
@@ -11,3 +13,13 @@
   display: flex
   flex-direction: column
   align-items: center
+
+@include mobile
+  .LoggedIn
+    margin-left: 2rem
+    margin-right: 2rem
+
+@include tablet
+  .LoggedIn
+    margin-left: 1rem
+    margin-right: 1rem

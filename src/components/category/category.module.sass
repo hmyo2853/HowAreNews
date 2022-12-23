@@ -1,3 +1,5 @@
+@import "../../_mixin.scss"
+
 .Category
   width: 100%
   max-width: 1280px
@@ -21,3 +23,17 @@
   > div > a > div
     padding-left: 0
     padding-right: 0
+
+@include mobile
+  .Category
+    grid-template-columns: 1fr
+
+    > div
+      border-radius: 1rem
+
+@include tablet
+  .Category
+    grid-template-columns: 1fr 1fr
+    
+    > div
+      border-radius: 1rem
