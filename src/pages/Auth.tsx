@@ -22,39 +22,25 @@ const Auth = () => {
   const [checkErr, setCheckErr] = useState<string>("");
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const {
-      target: { name, value },
-    } = e;
+    const target = e.target.id;
+    const value = e.target.value;
     // email input change
-    if (name === "email") {
+    if (target === "email") {
       // 특수문자 @._-  + 알파벳만 허용
       setEmail(value);
-    } else if (name === "password") {
+    } else if (target === "password") {
       // password input change
       setPwd(value);
-    } else if (name === "name") {
+    } else if (target === "name") {
       setName(value);
     }
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const regex = new RegExp(
       "([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(.[!#-'*+/-9=?A-Z^-~-]+)*|[[\t -Z^-~]*])"
     );
-    // 출력 에러 분기
-    if (name === "" && newAccount) {
-      return setCheckErr("이름를 입력해주세요.");
-    } else if (
-      !regex.test(email) ||
-      error == "Firebase: Error (auth/invalid-email)."
-    ) {
-      return setCheckErr("올바른 이메일 주소를 입력해주세요.");
-    } else if (pwd === "") {
-      return setCheckErr("비밀번호를 입력해주세요.");
-    } else if (pwd.length < 6) {
-      return setCheckErr("비밀번호를 6자 이상 입력해주세요.");
-    }
-
     try {
       // state 가 newAccount 라면
       if (newAccount) {
@@ -68,6 +54,26 @@ const Auth = () => {
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
+        // 출력 에러 분기
+        if (
+          error.message === "Firebase: Error (auth/wrong-password)." ||
+          error.message === "Firebase: Error (auth/user-not-found)." ||
+          error.message === "Firebase: Error (auth/wrong-password)."
+        ) {
+          return setCheckErr("이메일과 비밀번호를 확인해주세요.");
+        }
+        if (error.message === "Firebase: Error (auth/invalid-email).") {
+          return setCheckErr("이미 가입된 계정입니다. 로그인 해주세요.");
+        }
+        if (name === "" && newAccount) {
+          return setCheckErr("이름를 입력해주세요.");
+        } else if (!regex.test(email)) {
+          return setCheckErr("올바른 이메일 주소를 입력해주세요.");
+        } else if (pwd === "") {
+          return setCheckErr("비밀번호를 입력해주세요.");
+        } else if (pwd.length < 6) {
+          return setCheckErr("비밀번호를 6자 이상 입력해주세요.");
+        }
       }
     }
   };
@@ -88,109 +94,56 @@ const Auth = () => {
       <div>
         <img src="../src/assets/main_logo.png" width="320px" />
       </div>
-      {newAccount ? (
-        <>
-          <h2>회원가입</h2>
-          <TextField
-            name="name"
-            label="이름"
-            variant="outlined"
-            type="text"
-            required
-            value={name}
-            onChange={onChange}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                onSubmit();
-              }
-            }}
-          />
-
-          <TextField
-            name="email"
-            label="이메일"
-            variant="outlined"
-            type="email"
-            required
-            value={email}
-            onChange={onChange}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                onSubmit();
-              }
-            }}
-          />
-
-          <TextField
-            name="password"
-            label="비밀번호"
-            variant="outlined"
-            type="password"
-            required
-            value={pwd}
-            onChange={onChange}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                onSubmit();
-              }
-            }}
-          />
-        </>
-      ) : (
-        <>
-          <h2>로그인</h2>
-          <TextField
-            name="email"
-            label="이메일"
-            variant="outlined"
-            type="email"
-            required
-            value={email}
-            onChange={onChange}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                onSubmit();
-              }
-            }}
-          />
-
-          <TextField
-            name="password"
-            label="비밀번호"
-            variant="outlined"
-            type="password"
-            required
-            value={pwd}
-            onChange={onChange}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                onSubmit();
-              }
-            }}
-          />
-        </>
-      )}
-      <Button
-        variant="contained"
-        size="large"
-        onClick={onSubmit}
-        onKeyPress={(e) => {
-          if (e.key === "Enter") {
-            onSubmit();
-          }
-        }}
-        disableElevation
-      >
-        {newAccount ? "회원가입" : "로그인"}
-      </Button>
-      <Button
-        variant="text"
-        size="large"
-        onClick={toggleAccount}
-        disableElevation
-      >
+      <form>
+        {newAccount ? (
+          <>
+            <h2>회원가입</h2>
+            <input
+              type="text"
+              placeholder="이름 *"
+              id="name"
+              onChange={onChange}
+              required
+            />
+            <input
+              type="email"
+              placeholder="이메일 *"
+              id="email"
+              onChange={onChange}
+              required
+            />
+            <input
+              type="password"
+              placeholder="비밀번호 *"
+              id="password"
+              onChange={onChange}
+              required
+            />
+          </>
+        ) : (
+          <>
+            <h2>로그인</h2>
+            <input
+              type="email"
+              placeholder="이메일 *"
+              id="email"
+              onChange={onChange}
+              required
+            />
+            <input
+              type="password"
+              placeholder="비밀번호 *"
+              id="password"
+              onChange={onChange}
+              required
+            />
+          </>
+        )}
+        <button onClick={onSubmit}>{newAccount ? "회원가입" : "로그인"}</button>
+      </form>
+      <span className={styles.Toggle} onClick={toggleAccount}>
         {newAccount ? "기존 회원 로그인" : "새로 오셨나요?"}
-      </Button>
+      </span>
       <div>{checkErr}</div>
       <div className={styles.Btn}>
         <button

@@ -18,10 +18,12 @@ const Home = () => {
 
   return (
     <div className={styles.Category}>
-      <h1>홈</h1>
-      {data?.map((_data, i) => (
-        <NewsCard key={i} data={_data} />
-      ))}
+      <div className={styles.CardWrap}>
+        <h1>홈</h1>
+        {data?.map((_data, i) => (
+          <NewsCard key={i} data={_data} />
+        ))}
+      </div>
     </div>
   );
 };

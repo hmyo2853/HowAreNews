@@ -17,10 +17,12 @@ export default function Science() {
   if (isLoading) return <Loading />;
   return (
     <div className={styles.Category}>
-      <h1>과학</h1>
-      {data?.map((_data, i) => (
-        <NewsCard key={i} data={_data} />
-      ))}
+      <div className={styles.CardWrap}>
+        <h1>과학</h1>
+        {data?.map((_data, i) => (
+          <NewsCard key={i} data={_data} />
+        ))}
+      </div>
     </div>
   );
 }

@@ -17,10 +17,12 @@ export default function Sports() {
   if (isLoading) return <Loading />;
   return (
     <div className={styles.Category}>
-      <h1>스포츠</h1>
-      {data?.map((_data, i) => (
-        <NewsCard key={i} data={_data} />
-      ))}
+      <div className={styles.CardWrap}>
+        <h1>스포츠</h1>
+        {data?.map((_data, i) => (
+          <NewsCard key={i} data={_data} />
+        ))}
+      </div>
     </div>
   );
 }
