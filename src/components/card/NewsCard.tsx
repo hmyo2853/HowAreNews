@@ -23,20 +23,29 @@ const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
       }
     }
   };
+  const cardClick = () => {
+    window.open(`${data.url}`);
+  };
   return (
     <>
-      <Card sx={{ minWidth: 320 }} className={styles.NewsCard}>
-        <CardActionArea href={data.url} target="_blank">
-          <CardMedia
-            sx={{ height: 160 }}
-            component="img"
-            image={
+      <div onClick={cardClick} style={{ minWidth: 320, cursor: "pointer" }}>
+        <div>
+          <img
+            src={
               !data.urlToImage ? "../src/assets/null_img.png" : data.urlToImage
             }
-            alt={data.title}
+            style={{
+              minWidth: 320,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              width: "100%",
+              backgroundPosition: "center",
+              objectFit: "cover",
+              height: 160,
+            }}
           />
-          <CardContent>
-            <Typography gutterBottom variant="subtitle1" component="div">
+          <div>
+            <div>
               {data.source.name === "YouTube" ? (
                 <FontAwesomeIcon
                   className={styles.YoutubeIcon}
@@ -46,8 +55,8 @@ const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
               {data.title.length > 40
                 ? data.title.slice(0, 40) + "..."
                 : data.title}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
+            </div>
+            <div>
               {!data.description
                 ? null
                 : checkString(data.description) === false
@@ -55,10 +64,10 @@ const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
                 : data.description.length > 40
                 ? data.description.slice(0, 45) + "..."
                 : data.description}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

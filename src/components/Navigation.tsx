@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 import Navi from "./Navi";
 import styles from "./Navigation.module.sass";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 // header
 const Navigation = () => {
@@ -13,6 +15,9 @@ const Navigation = () => {
   // set name, email
   const [name, setName] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
+  const [isGithub, setIsGithub] = useState<boolean | null>(null);
+  const [isGoogle, setIsGoogle] = useState<boolean | null>(null);
+
   const onLogOut = () => {
     auth.signOut();
   };
@@ -38,7 +43,14 @@ const Navigation = () => {
     getAuthState();
     setName(_object?.displayName || null);
     setEmail(_object?.email || null);
+    if (_object?.providerData[0].providerId === "github.com") {
+      setIsGithub(true);
+    } else if (_object?.providerData[0].providerId === "google.com") {
+      setIsGoogle(true);
+    }
   }, [_object]);
+
+  console.log(_object);
 
   return (
     <div className={styles.Navigation}>
@@ -46,10 +58,15 @@ const Navigation = () => {
         <img src="../src/assets/header_logo.png" />
       </Link>
       <div className={styles.User__Link}>
+        {isGoogle ? (
+          <FontAwesomeIcon icon={faGoogle} />
+        ) : isGithub ? (
+          <FontAwesomeIcon icon={faGithub} />
+        ) : null}
         <span>
           <span>{name}</span> 님, 반갑습니다.
         </span>
-        <span>로그인 계정 : {email}</span>
+        {isGoogle || isGithub ? null : <span>로그인 계정 : {email}</span>}
         <Button variant="text" onClick={onLogOut}>
           로그아웃
         </Button>
