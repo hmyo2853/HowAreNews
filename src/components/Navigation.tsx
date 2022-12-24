@@ -80,18 +80,56 @@ const Navigation = () => {
       </div>
       {/** hidden navi */}
       <div className={styles.Mo__Navi}>
-        <Link to="/">
-          <img src="../src/assets/main_logo.png" />
-        </Link>
-        <select name="" id="">
-          <option value="홈">홈</option>
-          <option value="비즈니스">비즈니스</option>
-          <option value="엔터">엔터</option>
-          <option value="건강">건강</option>
-          <option value="과학">과학</option>
-          <option value="스포츠">스포츠</option>
-          <option value="IT · 기술"></option>
-        </select>
+        <div>
+          <Link to="/">
+            <img src="../src/assets/main_logo.png" />
+          </Link>
+          <button type="button" className="toggle-btn">
+            메뉴
+            <img
+              src="./img/icon-Triangle-down.svg"
+              alt=""
+              className="ico-down"
+            />
+          </button>
+          <ul>
+            <li>
+              <button type="button" className="option-btn">
+                홈
+              </button>
+            </li>
+            <li>
+              <button type="button" className="option-btn">
+                비즈니스
+              </button>
+            </li>
+            <li>
+              <button type="button" className="option-btn">
+                엔터
+              </button>
+            </li>
+            <li>
+              <button type="button" className="option-btn">
+                건강
+              </button>
+            </li>
+            <li>
+              <button type="button" className="option-btn">
+                과학
+              </button>
+            </li>
+            <li>
+              <button type="button" className="option-btn">
+                스포츠
+              </button>
+            </li>
+            <li>
+              <button type="button" className="option-btn">
+                IT · 기술
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
