@@ -17,10 +17,12 @@ export default function Technology() {
   if (isLoading) return <Loading />;
   return (
     <div className={styles.Category}>
-      <h1>IT · 기술</h1>
-      {data?.map((_data, i) => (
-        <NewsCard key={i} data={_data} />
-      ))}
+      <div className={styles.CardWrap}>
+        <h1>IT · 기술</h1>
+        {data?.map((_data, i) => (
+          <NewsCard key={i} data={_data} />
+        ))}
+      </div>
     </div>
   );
 }
