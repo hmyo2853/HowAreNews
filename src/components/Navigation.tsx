@@ -54,10 +54,10 @@ const Navigation = () => {
 
   return (
     <div className={styles.Navigation}>
-      <Link to="/">
-        <img src="../src/assets/header_logo.png" />
-      </Link>
       <div className={styles.User__Link}>
+        <Link to="/">
+          <img src="../src/assets/header_logo.png" />
+        </Link>
         {isGoogle ? (
           <FontAwesomeIcon icon={faGoogle} />
         ) : isGithub ? (
@@ -77,6 +77,21 @@ const Navigation = () => {
         <Navi children={"과학"} to={"/science"} />
         <Navi children={"스포츠"} to={"/sports"} />
         <Navi children={"IT · 기술"} to={"/technology"} />
+      </div>
+      {/** hidden navi */}
+      <div className={styles.Mo__Navi}>
+        <Link to="/">
+          <img src="../src/assets/main_logo.png" />
+        </Link>
+        <select name="" id="">
+          <option value="홈">홈</option>
+          <option value="비즈니스">비즈니스</option>
+          <option value="엔터">엔터</option>
+          <option value="건강">건강</option>
+          <option value="과학">과학</option>
+          <option value="스포츠">스포츠</option>
+          <option value="IT · 기술"></option>
+        </select>
       </div>
     </div>
   );
