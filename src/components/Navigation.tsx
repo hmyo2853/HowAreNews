@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import { User } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -75,9 +74,7 @@ const Navigation = () => {
           <span>{name}</span> 님, 반갑습니다.
         </span>
         {isGoogle || isGithub ? null : <span>로그인 계정 : {email}</span>}
-        <Button variant="text" onClick={onLogOut}>
-          로그아웃
-        </Button>
+        <button onClick={onLogOut}>로그아웃</button>
         <Navi children={"홈"} to={"/"} />
         <Navi children={"비즈니스"} to={"/business"} />
         <Navi children={"엔터"} to={"/entertainment"} />
