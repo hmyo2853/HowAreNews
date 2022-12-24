@@ -8,6 +8,7 @@ import styles from "./Navigation.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 import Modal from "./modals/Modal";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 // header
 const Navigation = () => {
@@ -91,8 +92,10 @@ const Navigation = () => {
           <Link to="/">
             <img src="../src/assets/main_logo.png" />
           </Link>
-          <button onClick={showModal}>모달 띄우기</button>
-          {modalOpen && <Modal setModalOpen={setModalOpen} />}
+          <button onClick={showModal}>
+            <FontAwesomeIcon icon={faBars} />
+          </button>
+          {modalOpen && <Modal setModalOpen={setModalOpen} name={name} />}
         </div>
       </div>
     </div>

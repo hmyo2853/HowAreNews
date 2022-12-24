@@ -3,8 +3,9 @@ import Navi from "../Navi";
 
 interface PropsType {
   setModalOpen: (e: boolean) => void;
+  name: string;
 }
-function ModalBasic({ setModalOpen }: PropsType) {
+function ModalBasic({ setModalOpen, name }: PropsType) {
   // 모달 끄기
   const closeModal = () => {
     setModalOpen(false);
@@ -15,6 +16,7 @@ function ModalBasic({ setModalOpen }: PropsType) {
       <button className={styles.close} onClick={closeModal}>
         X
       </button>
+      <span style={{ fontWeight: "bold" }}>{name}님, 반갑습니다.</span>
       <Navi onClick={closeModal} children={"홈"} to={"/"} />
       <Navi onClick={closeModal} children={"비즈니스"} to={"/business"} />
       <Navi onClick={closeModal} children={"엔터"} to={"/entertainment"} />
