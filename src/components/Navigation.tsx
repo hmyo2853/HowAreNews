@@ -7,6 +7,7 @@ import Navi from "./Navi";
 import styles from "./Navigation.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
+import Modal from "./modals/Modal";
 
 // header
 const Navigation = () => {
@@ -17,6 +18,12 @@ const Navigation = () => {
   const [email, setEmail] = useState<string | null>(null);
   const [isGithub, setIsGithub] = useState<boolean | null>(null);
   const [isGoogle, setIsGoogle] = useState<boolean | null>(null);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+  // 모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
 
   const onLogOut = () => {
     auth.signOut();
@@ -84,51 +91,8 @@ const Navigation = () => {
           <Link to="/">
             <img src="../src/assets/main_logo.png" />
           </Link>
-          <button type="button" className="toggle-btn">
-            메뉴
-            <img
-              src="./img/icon-Triangle-down.svg"
-              alt=""
-              className="ico-down"
-            />
-          </button>
-          <ul>
-            <li>
-              <button type="button" className="option-btn">
-                홈
-              </button>
-            </li>
-            <li>
-              <button type="button" className="option-btn">
-                비즈니스
-              </button>
-            </li>
-            <li>
-              <button type="button" className="option-btn">
-                엔터
-              </button>
-            </li>
-            <li>
-              <button type="button" className="option-btn">
-                건강
-              </button>
-            </li>
-            <li>
-              <button type="button" className="option-btn">
-                과학
-              </button>
-            </li>
-            <li>
-              <button type="button" className="option-btn">
-                스포츠
-              </button>
-            </li>
-            <li>
-              <button type="button" className="option-btn">
-                IT · 기술
-              </button>
-            </li>
-          </ul>
+          <button onClick={showModal}>모달 띄우기</button>
+          {modalOpen && <Modal setModalOpen={setModalOpen} />}
         </div>
       </div>
     </div>
