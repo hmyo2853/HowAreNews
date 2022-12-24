@@ -1,9 +1,10 @@
+import { MouseEventHandler, useEffect, useRef } from "react";
 import styles from "../modals/Modal.module.sass";
 import Navi from "../Navi";
 
 interface PropsType {
   setModalOpen: (e: boolean) => void;
-  name: string;
+  name: string | null;
 }
 function ModalBasic({ setModalOpen, name }: PropsType) {
   // 모달 끄기

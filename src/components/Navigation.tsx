@@ -93,7 +93,7 @@ const Navigation = () => {
             <img src="../src/assets/main_logo.png" />
           </Link>
           <button onClick={showModal}>
-            <FontAwesomeIcon icon={faBars} />
+            <FontAwesomeIcon icon={faBars} size="2x" />
           </button>
           {modalOpen && <Modal setModalOpen={setModalOpen} name={name} />}
         </div>
