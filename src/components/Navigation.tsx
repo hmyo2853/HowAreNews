@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import { User } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -7,6 +6,8 @@ import Navi from "./Navi";
 import styles from "./Navigation.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
+import Modal from "./modals/Modal";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 // header
 const Navigation = () => {
@@ -17,6 +18,12 @@ const Navigation = () => {
   const [email, setEmail] = useState<string | null>(null);
   const [isGithub, setIsGithub] = useState<boolean | null>(null);
   const [isGoogle, setIsGoogle] = useState<boolean | null>(null);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+  // 모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
 
   const onLogOut = () => {
     auth.signOut();
@@ -67,9 +74,7 @@ const Navigation = () => {
           <span>{name}</span> 님, 반갑습니다.
         </span>
         {isGoogle || isGithub ? null : <span>로그인 계정 : {email}</span>}
-        <Button variant="text" onClick={onLogOut}>
-          로그아웃
-        </Button>
+        <button onClick={onLogOut}>로그아웃</button>
         <Navi children={"홈"} to={"/"} />
         <Navi children={"비즈니스"} to={"/business"} />
         <Navi children={"엔터"} to={"/entertainment"} />
@@ -80,18 +85,15 @@ const Navigation = () => {
       </div>
       {/** hidden navi */}
       <div className={styles.Mo__Navi}>
-        <Link to="/">
-          <img src="../src/assets/main_logo.png" />
-        </Link>
-        <select name="" id="">
-          <option value="홈">홈</option>
-          <option value="비즈니스">비즈니스</option>
-          <option value="엔터">엔터</option>
-          <option value="건강">건강</option>
-          <option value="과학">과학</option>
-          <option value="스포츠">스포츠</option>
-          <option value="IT · 기술"></option>
-        </select>
+        <div>
+          <Link to="/">
+            <img src="../src/assets/main_logo.png" />
+          </Link>
+          <button onClick={showModal}>
+            <FontAwesomeIcon icon={faBars} size="2x" />
+          </button>
+          {modalOpen && <Modal setModalOpen={setModalOpen} name={name} />}
+        </div>
       </div>
     </div>
   );
