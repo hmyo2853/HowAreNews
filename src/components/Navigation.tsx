@@ -8,8 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 import Modal from "./modals/Modal";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import HeaderLogoPng from "../src/assets/header_logo.png";
-import MoHeaderLogoPng from "../src/assets/main_logo.png";
+import HeaderLogoPng from "../assets/header_logo.png";
+import MoHeaderLogoPng from "../assets/main_logo.png";
 
 // header
 const Navigation = () => {

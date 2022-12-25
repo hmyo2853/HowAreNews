@@ -11,7 +11,7 @@ import { auth, Providers } from "../firebase";
 import styles from "./Auth.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
-import logoPng from "../src/assets/main_logo.png";
+import logoPng from "../assets/main_logo.png";
 
 const Auth = () => {
   const [email, setEmail] = useState<string>("");
