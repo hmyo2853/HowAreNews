@@ -1,3 +1,6 @@
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { auth } from "../../firebase";
 import styles from "../modals/Modal.module.sass";
 import Navi from "../Navi";
 
@@ -10,14 +13,23 @@ function ModalBasic({ setModalOpen, name }: PropsType) {
   const closeModal = () => {
     setModalOpen(false);
   };
+  const onLogOut = () => {
+    auth.signOut();
+  };
 
   return (
     <>
       <div className={styles.container}>
         <button className={styles.close} onClick={closeModal}>
-          X
+          <FontAwesomeIcon icon={faClose} size="2x" />
         </button>
-        <span style={{ fontWeight: "bold" }}>{name}님, 반갑습니다.</span>
+        <div>
+          <span style={{ fontWeight: "bold" }}>{name}</span>님, 반갑습니다.
+          <button className={styles.ModalBtn} onClick={onLogOut}>
+            로그아웃
+          </button>
+        </div>
+        <div className={styles.Bar}></div>
         <Navi onClick={closeModal} children={"홈"} to={"/"} />
         <Navi onClick={closeModal} children={"비즈니스"} to={"/business"} />
         <Navi onClick={closeModal} children={"엔터"} to={"/entertainment"} />
