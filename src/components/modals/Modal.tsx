@@ -1,4 +1,6 @@
-import { MouseEventHandler, useEffect, useRef } from "react";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { auth } from "../../firebase";
 import styles from "../modals/Modal.module.sass";
 import Navi from "../Navi";
 
@@ -11,21 +13,33 @@ function ModalBasic({ setModalOpen, name }: PropsType) {
   const closeModal = () => {
     setModalOpen(false);
   };
+  const onLogOut = () => {
+    auth.signOut();
+  };
 
   return (
-    <div className={styles.container}>
-      <button className={styles.close} onClick={closeModal}>
-        X
-      </button>
-      <span style={{ fontWeight: "bold" }}>{name}님, 반갑습니다.</span>
-      <Navi onClick={closeModal} children={"홈"} to={"/"} />
-      <Navi onClick={closeModal} children={"비즈니스"} to={"/business"} />
-      <Navi onClick={closeModal} children={"엔터"} to={"/entertainment"} />
-      <Navi onClick={closeModal} children={"건강"} to={"/health"} />
-      <Navi onClick={closeModal} children={"과학"} to={"/science"} />
-      <Navi onClick={closeModal} children={"스포츠"} to={"/sports"} />
-      <Navi onClick={closeModal} children={"IT · 기술"} to={"/technology"} />
-    </div>
+    <>
+      <div className={styles.container}>
+        <button className={styles.close} onClick={closeModal}>
+          <FontAwesomeIcon icon={faClose} size="2x" />
+        </button>
+        <div>
+          <span style={{ fontWeight: "bold" }}>{name}</span>님, 반갑습니다.
+          <button className={styles.ModalBtn} onClick={onLogOut}>
+            로그아웃
+          </button>
+        </div>
+        <div className={styles.Bar}></div>
+        <Navi onClick={closeModal} children={"홈"} to={"/"} />
+        <Navi onClick={closeModal} children={"비즈니스"} to={"/business"} />
+        <Navi onClick={closeModal} children={"엔터"} to={"/entertainment"} />
+        <Navi onClick={closeModal} children={"건강"} to={"/health"} />
+        <Navi onClick={closeModal} children={"과학"} to={"/science"} />
+        <Navi onClick={closeModal} children={"스포츠"} to={"/sports"} />
+        <Navi onClick={closeModal} children={"IT · 기술"} to={"/technology"} />
+      </div>
+      <div className={styles.Background}></div>
+    </>
   );
 }
 export default ModalBasic;

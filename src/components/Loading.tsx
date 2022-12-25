@@ -1,17 +1,11 @@
-import { CircularProgress } from "@mui/material";
-
+import styles from "./Loading.module.sass";
 export function Loading() {
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <CircularProgress />
-    </div>
+    <>
+      <div className={styles.Loading}>
+        <img src="/src/assets/spinner-solid.svg" style={{ width: "3rem" }} />
+        <div>Loading...</div>
+      </div>
+    </>
   );
 }

@@ -29,6 +29,12 @@ const Navigation = () => {
     auth.signOut();
   };
 
+  if (modalOpen === true) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+
   // 로그인 중일떄 정보 출력
   const getAuthState = async () => {
     let __object: User | null = null;
@@ -57,24 +63,24 @@ const Navigation = () => {
     }
   }, [_object]);
 
-  console.log(_object);
-
   return (
     <div className={styles.Navigation}>
       <div className={styles.User__Link}>
         <Link to="/">
           <img src="../src/assets/header_logo.png" />
         </Link>
-        {isGoogle ? (
-          <FontAwesomeIcon icon={faGoogle} />
-        ) : isGithub ? (
-          <FontAwesomeIcon icon={faGithub} />
-        ) : null}
-        <span>
-          <span>{name}</span> 님, 반갑습니다.
-        </span>
-        {isGoogle || isGithub ? null : <span>로그인 계정 : {email}</span>}
-        <button onClick={onLogOut}>로그아웃</button>
+        <div className={styles.UserData}>
+          {isGoogle ? (
+            <FontAwesomeIcon icon={faGoogle} />
+          ) : isGithub ? (
+            <FontAwesomeIcon icon={faGithub} />
+          ) : null}
+          <span>
+            <span>{name}</span> 님, 반갑습니다.
+          </span>
+          {isGoogle || isGithub ? null : <span>로그인 계정 : {email}</span>}
+          <button onClick={onLogOut}>로그아웃</button>
+        </div>
         <Navi children={"홈"} to={"/"} />
         <Navi children={"비즈니스"} to={"/business"} />
         <Navi children={"엔터"} to={"/entertainment"} />
