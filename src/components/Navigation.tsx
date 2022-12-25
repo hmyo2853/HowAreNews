@@ -29,6 +29,12 @@ const Navigation = () => {
     auth.signOut();
   };
 
+  if (modalOpen === true) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+
   // 로그인 중일떄 정보 출력
   const getAuthState = async () => {
     let __object: User | null = null;
