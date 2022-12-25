@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 import Modal from "./modals/Modal";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import HeaderLogoPng from "../src/assets/header_logo.png";
+import MoHeaderLogoPng from "../src/assets/main_logo.png";
 
 // header
 const Navigation = () => {
@@ -67,7 +69,7 @@ const Navigation = () => {
     <div className={styles.Navigation}>
       <div className={styles.User__Link}>
         <Link to="/">
-          <img src="../src/assets/header_logo.png" />
+          <img src={HeaderLogoPng} />
         </Link>
         <div className={styles.UserData}>
           {isGoogle ? (
@@ -93,7 +95,7 @@ const Navigation = () => {
       <div className={styles.Mo__Navi}>
         <div>
           <Link to="/">
-            <img src="../src/assets/main_logo.png" />
+            <img src={MoHeaderLogoPng} />
           </Link>
           <button onClick={showModal}>
             <FontAwesomeIcon icon={faBars} size="2x" />

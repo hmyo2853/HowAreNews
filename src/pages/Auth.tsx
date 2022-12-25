@@ -11,6 +11,7 @@ import { auth, Providers } from "../firebase";
 import styles from "./Auth.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
+import logoPng from "../src/assets/main_logo.png";
 
 const Auth = () => {
   const [email, setEmail] = useState<string>("");
@@ -91,7 +92,7 @@ const Auth = () => {
   return (
     <div className={styles.Auth}>
       <div>
-        <img src="../src/assets/main_logo.png" width="320px" />
+        <img src={logoPng} width="320px" />
       </div>
       <form>
         {newAccount ? (
