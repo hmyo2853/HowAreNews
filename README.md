@@ -1,6 +1,6 @@
 # HowAreNews
 
-How Are New? : 뉴스 웹 사이트
+How Are New? : 오늘의 뉴스가 궁금하시다면!
 
 ## 토이 프로젝트 진행 목적
 
@@ -16,7 +16,7 @@ How Are New? : 뉴스 웹 사이트
 
 ## 최종 구현 화면
 
-- vercel - [###](###)
+- vercel - [https://how-are-news.vercel.app/](https://how-are-news.vercel.app/)
 
 <img src="#" width="100%" alt="coverImg"/>
 
