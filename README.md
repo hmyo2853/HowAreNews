@@ -1,5 +1,7 @@
 # HowAreNews
 
+<img src="https://i.imgur.com/3IZNTpe.png" width="100%" alt="coverImg"/>
+
 How Are New? : 오늘의 뉴스가 궁금하시다면!
 
 ## 토이 프로젝트 진행 목적
