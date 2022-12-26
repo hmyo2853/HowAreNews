@@ -1,13 +1,9 @@
 export interface NewsAPI {
-  source: {
-    name: string;
-  };
-  author: null | string;
   title: string;
   description: string;
   url: string;
-  urlToImage: string;
-  publishedAt: string;
+  image: string;
+  title: string;
 }
 
 export interface UserData {

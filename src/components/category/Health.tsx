@@ -7,7 +7,7 @@ import styles from "./Category.module.sass";
 export default function Health() {
   const fetchHealth = async () => {
     const URL =
-      "https://newsapi.org/v2/top-headlines?country=kr&category=health&apiKey=fdb223730c9a4641af46ee2787db1614";
+      "https://api.currentsapi.services/v1/search?language=ko&apiKey=19nC-zjytBaWvOP0fTa1SD3v_7rTSrLQhkh3rSUjMz5orM4v&category=health";
 
     return await fetchNewsData(URL);
   };

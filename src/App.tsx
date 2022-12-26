@@ -5,10 +5,10 @@ import Home from "./pages/Home";
 import { Loading } from "./components/Loading";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
-  Business,
-  Entertainment,
+  LifeStyle,
+  Politics,
   Health,
-  Science,
+  Finance,
   Sports,
   Technology,
 } from "./components/category/Category";
@@ -40,10 +40,10 @@ export default function App() {
             <Navigation />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/business" element={<Business />} />
-              <Route path="/entertainment" element={<Entertainment />} />
+              <Route path="/lifestyle" element={<LifeStyle />} />
+              <Route path="/politics" element={<Politics />} />
               <Route path="/health" element={<Health />} />
-              <Route path="/science" element={<Science />} />
+              <Route path="/finance" element={<Finance />} />
               <Route path="/sports" element={<Sports />} />
               <Route path="/technology" element={<Technology />} />
               <Route path="/*" element={<Home />} />

@@ -1,8 +1,6 @@
 import { PropsWithChildren } from "react";
 import { NewsAPI } from "../../howarenews";
 import styles from "./NewsCard.module.sass";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 interface GetDataProps {
   data: NewsAPI;
@@ -16,19 +14,16 @@ const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
       }
     }
   };
+
   const cardClick = () => {
     window.open(`${data.url}`);
   };
+
   return (
     <div className={styles.NewsCard} onClick={cardClick}>
-      <img
-        src={!data.urlToImage ? "../src/assets/null_img.png" : data.urlToImage}
-      />
+      <img src={!data.image ? "../src/assets/null_img.png" : data.image} />
       <div>
         <div className={styles.Title}>
-          {data.source.name === "YouTube" ? (
-            <FontAwesomeIcon className={styles.YoutubeIcon} icon={faYoutube} />
-          ) : null}
           {data.title.length > 40
             ? data.title.slice(0, 40) + "..."
             : data.title}

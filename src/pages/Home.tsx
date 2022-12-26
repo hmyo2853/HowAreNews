@@ -7,7 +7,7 @@ import { Loading } from "../components/Loading";
 const Home = () => {
   const fetchHome = async () => {
     const URL =
-      "https://newsapi.org/v2/top-headlines?country=kr&apiKey=fdb223730c9a4641af46ee2787db1614";
+      "https://api.currentsapi.services/v1/latest-news?language=ko&apiKey=19nC-zjytBaWvOP0fTa1SD3v_7rTSrLQhkh3rSUjMz5orM4v";
 
     return await fetchNewsData(URL);
   };

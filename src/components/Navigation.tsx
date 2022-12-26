@@ -84,10 +84,10 @@ const Navigation = () => {
           <button onClick={onLogOut}>로그아웃</button>
         </div>
         <Navi children={"홈"} to={"/"} />
-        <Navi children={"비즈니스"} to={"/business"} />
-        <Navi children={"엔터"} to={"/entertainment"} />
+        <Navi children={"라이프"} to={"/lifestyle"} />
+        <Navi children={"정치"} to={"/politics"} />
         <Navi children={"건강"} to={"/health"} />
-        <Navi children={"과학"} to={"/science"} />
+        <Navi children={"금융"} to={"/finance"} />
         <Navi children={"스포츠"} to={"/sports"} />
         <Navi children={"IT · 기술"} to={"/technology"} />
       </div>

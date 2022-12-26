@@ -1,3 +1,5 @@
+@import "../../_mixin.scss"
+
 .NewsCard
   text-align: left
   cursor: pointer
@@ -18,6 +20,10 @@
     background-position: center
     object-fit: cover
     height: 160px
+  
+  @include mobile
+    img
+      height: 240px
 
 .YoutubeIcon
   position: absolute
