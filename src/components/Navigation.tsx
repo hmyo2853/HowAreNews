@@ -93,16 +93,14 @@ const Navigation = () => {
       </div>
       {/** hidden navi */}
       <div className={styles.Mo__Navi}>
-        <div>
-          <Link to="/">
-            <img src={MoHeaderLogoPng} />
-          </Link>
-          <button onClick={showModal}>
-            <FontAwesomeIcon icon={faBars} size="2x" />
-          </button>
-          {modalOpen && <Modal setModalOpen={setModalOpen} name={name} />}
-        </div>
+        <Link to="/">
+          <img src={MoHeaderLogoPng} />
+        </Link>
+        <button onClick={showModal}>
+          <FontAwesomeIcon icon={faBars} size="2x" />
+        </button>
       </div>
+      {modalOpen && <Modal setModalOpen={setModalOpen} name={name} />}
     </div>
   );
 };
