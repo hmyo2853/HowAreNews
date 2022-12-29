@@ -33,7 +33,7 @@ How Are New? : 오늘의 뉴스가 궁금하시다면!
 - [✅] 모바일, 타블렛, 피씨 버전을 고려한 반응형 웹 사이트
 - [✅] CSS 라이브러리 없이 SASS로 UI 구현
 - [✅] img fetch error 케이스 default img로 분기 처리
-- [✅] fetch data string 한글 깨짐 현살 분기 처리
+- [✅] fetch data string 한글 깨짐 현상 분기 처리
 
 <br>
 
