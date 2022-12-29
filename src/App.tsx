@@ -14,6 +14,7 @@ import {
 } from "./components/category/Category";
 import Navigation from "./components/Navigation";
 import styles from "./App.module.sass";
+import Footer from "./components/Footer";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -48,6 +49,7 @@ export default function App() {
               <Route path="/technology" element={<Technology />} />
               <Route path="/*" element={<Home />} />
             </Routes>
+            <Footer />
           </BrowserRouter>
         </div>
       ) : (

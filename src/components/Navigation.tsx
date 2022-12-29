@@ -72,16 +72,13 @@ const Navigation = () => {
           <img src={HeaderLogoPng} />
         </Link>
         <div className={styles.UserData}>
+          <span style={{fontWeight: "bold"}}>{name !== null && name.length > 10 ? name?.slice(0,10) + "..." : name}</span>
           {isGoogle ? (
-            <FontAwesomeIcon icon={faGoogle} />
-          ) : isGithub ? (
-            <FontAwesomeIcon icon={faGithub} />
-          ) : null}
-          <span>
-            <span>{name}</span> 님, 반갑습니다.
-          </span>
-          {isGoogle || isGithub ? null : <span>로그인 계정 : {email}</span>}
-          <button onClick={onLogOut}>로그아웃</button>
+              <FontAwesomeIcon icon={faGoogle} />
+            ) : isGithub ? (
+              <FontAwesomeIcon icon={faGithub} />
+            ) : <span>( {email} )</span>}
+            <button onClick={onLogOut}>로그아웃</button>
         </div>
         <Navi children={"홈"} to={"/"} />
         <Navi children={"라이프"} to={"/lifestyle"} />
@@ -93,16 +90,14 @@ const Navigation = () => {
       </div>
       {/** hidden navi */}
       <div className={styles.Mo__Navi}>
-        <div>
-          <Link to="/">
-            <img src={MoHeaderLogoPng} />
-          </Link>
-          <button onClick={showModal}>
-            <FontAwesomeIcon icon={faBars} size="2x" />
-          </button>
-          {modalOpen && <Modal setModalOpen={setModalOpen} name={name} />}
-        </div>
+        <Link to="/">
+          <img src={MoHeaderLogoPng} />
+        </Link>
+        <button onClick={showModal}>
+          <FontAwesomeIcon icon={faBars} size="2x" />
+        </button>
       </div>
+      {modalOpen && <Modal setModalOpen={setModalOpen} name={name} />}
     </div>
   );
 };

@@ -18,13 +18,14 @@ function ModalBasic({ setModalOpen, name }: PropsType) {
   };
 
   return (
-    <>
+    <div className={styles.wrap}>
       <div className={styles.container}>
         <button className={styles.close} onClick={closeModal}>
           <FontAwesomeIcon icon={faClose} size="2x" />
         </button>
-        <div>
-          <span style={{ fontWeight: "bold" }}>{name}</span>님, 반갑습니다.
+        <div className={styles.UserData}>
+          <span style={{ marginBottom: "1rem"}}><span style={{ fontWeight: "bold" }}>{name}</span> 님, 반갑습니다.
+          </span>
           <button className={styles.ModalBtn} onClick={onLogOut}>
             로그아웃
           </button>
@@ -39,7 +40,7 @@ function ModalBasic({ setModalOpen, name }: PropsType) {
         <Navi onClick={closeModal} children={"IT · 기술"} to={"/technology"} />
       </div>
       <div className={styles.Background}></div>
-    </>
+    </div>
   );
 }
 export default ModalBasic;

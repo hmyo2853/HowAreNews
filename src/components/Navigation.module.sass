@@ -7,11 +7,10 @@
   flex-direction: column
   place-items: center
   margin: 1rem 0
-
-  span
-    span
-      font-weight: 600
   
+  button
+    margin-left: 1rem
+
   a
     text-decoration: none
 
@@ -39,32 +38,43 @@
   display: none
   width: 100%
 
-  > div
+  a
+    display: flex
+    flex-direction: column
+    justify-content: center
+    margin-left: 2rem
+  
+  button
+    margin-right: 2rem
+
+  img
+    height: 1.6rem
+  
+  &:first-child
     display: flex
     flex-direction: column
 
-  > div > a
-    place-items: center
-
-    > img
-      height: 1.6rem
-
 @include mobile
-  
   .Mo__Navi
-    display: block
+    display: flex
+    position: fixed
+    background-color: white
+    z-index: 99
+    top: 0
+    left: 0
+    justify-content: space-between
 
-    > div
-      width: 100%
+    &:first-child
       display: flex
       flex-direction: row
       place-items: center
       justify-content: space-between
+      padding: 1rem 2rem
   
   .User__Link
     display: none
 
 .UserData
-  display: grid
-  grid-template-columns: 0.5fr 3.2fr 1fr
+  max-width: 500px
+  display: flex
   align-items: center
