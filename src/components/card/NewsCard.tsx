@@ -27,7 +27,11 @@ const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
 
   return (
     <div className={styles.NewsCard} onClick={cardClick}>
-      <img src={data.image} onError={addDefaultImg} />
+      {data.image.slice(0, 2) === "//" ? (
+        <img src={"http:" + data.image} />
+      ) : (
+        <img src={data.image} onError={addDefaultImg} />
+      )}
       <div>
         <div className={styles.Title}>
           {data.title.length > 40
