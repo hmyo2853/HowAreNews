@@ -1,6 +1,7 @@
 import { PropsWithChildren, SyntheticEvent } from "react";
 import { NewsAPI } from "../../howarenews";
 import styles from "./NewsCard.module.sass";
+import defaultImg from "../../assets/null_img.png";
 
 interface GetDataProps {
   data: NewsAPI;
@@ -21,7 +22,7 @@ const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
 
   // default img
   const addDefaultImg = (e: SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = "../src/assets/null_img.png";
+    e.currentTarget.src = defaultImg;
   };
 
   return (
