@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, SyntheticEvent } from "react";
 import { NewsAPI } from "../../howarenews";
 import styles from "./NewsCard.module.sass";
 
@@ -19,9 +19,14 @@ const NewsCard = ({ data }: PropsWithChildren<GetDataProps>) => {
     window.open(`${data.url}`);
   };
 
+  // default img
+  const addDefaultImg = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = "../src/assets/null_img.png";
+  };
+
   return (
     <div className={styles.NewsCard} onClick={cardClick}>
-      <img src={!data.image ? "../src/assets/null_img.png" : data.image} />
+      <img src={data.image} onError={addDefaultImg} />
       <div>
         <div className={styles.Title}>
           {data.title.length > 40
