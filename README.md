@@ -45,3 +45,10 @@ How Are New? : 오늘의 뉴스가 궁금하시다면!
 - SASS/SCSS: 변수로 css 유지보수가 용이하기 위해 사용
 - Vite: build 속도를 빠르게 하기 위해 사용
 - Firebase: 사용자 데이터 저장 및 로그인 기능 구현을 위해 사용
+
+## 실행 방법
+
+```
+yarn install
+yarn dev
+```

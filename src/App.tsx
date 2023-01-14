@@ -47,7 +47,7 @@ export default function App() {
               <Route path="/finance" element={<Finance />} />
               <Route path="/sports" element={<Sports />} />
               <Route path="/technology" element={<Technology />} />
-              <Route path="/*" element={<Home />} />
+              <Route path="*" element={<Home />} />
             </Routes>
             <Footer />
           </BrowserRouter>
