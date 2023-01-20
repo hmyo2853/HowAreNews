@@ -11,6 +11,7 @@ interface PropsType {
 function ModalBasic({ setModalOpen, name }: PropsType) {
   // 모달 끄기
   const closeModal = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     setModalOpen(false);
   };
   const onLogOut = () => {
@@ -24,7 +25,8 @@ function ModalBasic({ setModalOpen, name }: PropsType) {
           <FontAwesomeIcon icon={faClose} size="2x" />
         </button>
         <div className={styles.UserData}>
-          <span style={{ marginBottom: "1rem"}}><span style={{ fontWeight: "bold" }}>{name}</span> 님, 반갑습니다.
+          <span style={{ marginBottom: "1rem" }}>
+            <span style={{ fontWeight: "bold" }}>{name}</span> 님, 반갑습니다.
           </span>
           <button className={styles.ModalBtn} onClick={onLogOut}>
             로그아웃
