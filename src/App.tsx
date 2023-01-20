@@ -15,6 +15,7 @@ import {
 import Navigation from "./components/Navigation";
 import styles from "./App.module.sass";
 import Footer from "./components/Footer";
+import { TopBtn } from "./components/topbtn/TopBtn";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -37,6 +38,7 @@ export default function App() {
     <div className={styles.App}>
       {isLoggedIn ? (
         <div className={styles.LoggedIn}>
+          <TopBtn />
           <BrowserRouter>
             <Navigation />
             <Routes>
