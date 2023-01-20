@@ -20,7 +20,17 @@ How Are New? : 오늘의 뉴스가 궁금하시다면!
 
 - vercel - [https://how-are-news.vercel.app/](https://how-are-news.vercel.app/)
 
-<img src="#" width="100%" alt="coverImg"/>
+# 로그인
+
+<img src="/src/assets/cover_login.png" width="100%" alt="coverImg"/>
+
+# SNS 로그인
+
+<img src="/src/assets/cover_google.png" width="100%" alt="coverImg"/>
+
+# 카테고리 (홈, 라이프 스타일, 정치, 건강, 금융, 스포츠, IT 기술)
+
+<img src="/src/assets/cover_main.png" width="100%" alt="coverImg"/>
 
 <br>
 
