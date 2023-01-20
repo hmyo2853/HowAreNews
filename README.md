@@ -4,18 +4,6 @@
 
 How Are New? : 오늘의 뉴스가 궁금하시다면!
 
-## 토이 프로젝트 진행 목적
-
-- `React` `Typescript` 컴포넌트 모듈화
-- `async`, `await`로 비동기 프로그래밍 코드 작성
-- `CSS` 전처리기 `SASS` 사용
-- `React-Query`로 상태 관리 및 비동기 프로그래밍
-- `vite create` 및 `vercel` 배포
-- `firebase`로 로그인 기능 구현
-- mobile, tablet, pc 버전을 고려한 반응형 UI 디자인
-
-<br>
-
 ## 최종 구현 화면
 
 - vercel - [https://how-are-news.vercel.app/](https://how-are-news.vercel.app/)
@@ -31,6 +19,22 @@ How Are New? : 오늘의 뉴스가 궁금하시다면!
 ### 카테고리 (홈, 라이프 스타일, 정치, 건강, 금융, 스포츠, IT 기술)
 
 <img src="/src/assets/cover_main.png" width="100%" alt="coverImg"/>
+
+### 모바일 / 태블릿 웹
+
+<img src="/src/assets/cover_mo_tab.png" width="100%" alt="coverImg"/>
+
+<br>
+
+## 토이 프로젝트 진행 목적
+
+- `React` `Typescript` 컴포넌트 모듈화
+- `async`, `await`로 비동기 프로그래밍 코드 작성
+- `CSS` 전처리기 `SASS` 사용
+- `React-Query`로 상태 관리 및 비동기 프로그래밍
+- `vite create` 및 `vercel` 배포
+- `firebase`로 로그인 기능 구현
+- mobile, tablet, pc 버전을 고려한 반응형 UI 디자인
 
 <br>
 
