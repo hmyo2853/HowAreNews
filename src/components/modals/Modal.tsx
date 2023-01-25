@@ -1,5 +1,6 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import styles from "../modals/Modal.module.sass";
 import Navi from "../Navi";
@@ -9,6 +10,7 @@ interface PropsType {
   name: string | null;
 }
 function ModalBasic({ setModalOpen, name }: PropsType) {
+  const navigate = useNavigate();
   // 모달 끄기
   const closeModal = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -16,6 +18,7 @@ function ModalBasic({ setModalOpen, name }: PropsType) {
   };
   const onLogOut = () => {
     auth.signOut();
+    navigate("/");
   };
 
   return (

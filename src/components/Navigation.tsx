@@ -1,6 +1,6 @@
 import { User } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import Navi from "./Navi";
 import styles from "./Navigation.module.sass";
@@ -22,12 +22,15 @@ const Navigation = () => {
   const [isGoogle, setIsGoogle] = useState<boolean | null>(null);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
+  const navigate = useNavigate();
+
   // 모달창 노출
   const showModal = () => {
     setModalOpen(true);
   };
 
   const onLogOut = () => {
+    navigate("/");
     auth.signOut();
   };
 
@@ -72,13 +75,19 @@ const Navigation = () => {
           <img src={HeaderLogoPng} />
         </Link>
         <div className={styles.UserData}>
-          <span style={{fontWeight: "bold"}}>{name !== null && name.length > 10 ? name?.slice(0,10) + "..." : name}</span>
+          <span style={{ fontWeight: "bold" }}>
+            {name !== null && name.length > 10
+              ? name?.slice(0, 10) + "..."
+              : name}
+          </span>
           {isGoogle ? (
-              <FontAwesomeIcon icon={faGoogle} />
-            ) : isGithub ? (
-              <FontAwesomeIcon icon={faGithub} />
-            ) : <span>( {email} )</span>}
-            <button onClick={onLogOut}>로그아웃</button>
+            <FontAwesomeIcon icon={faGoogle} />
+          ) : isGithub ? (
+            <FontAwesomeIcon icon={faGithub} />
+          ) : (
+            <span>( {email} )</span>
+          )}
+          <button onClick={onLogOut}>로그아웃</button>
         </div>
         <Navi children={"홈"} to={"/"} />
         <Navi children={"라이프"} to={"/lifestyle"} />
