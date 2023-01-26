@@ -1,7 +1,7 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebase";
+import { LogOut } from "../auth/LogOut.module";
 import styles from "../modals/Modal.module.sass";
 import Navi from "../Navi";
 
@@ -9,16 +9,17 @@ interface PropsType {
   setModalOpen: (e: boolean) => void;
   name: string | null;
 }
-function ModalBasic({ setModalOpen, name }: PropsType) {
+const ModalBasic = ({ setModalOpen, name }: PropsType) => {
   const navigate = useNavigate();
+
   // 모달 끄기
   const closeModal = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     setModalOpen(false);
   };
-  const onLogOut = () => {
-    auth.signOut();
-    navigate("/");
+
+  const ModalLogOut = () => {
+    LogOut(navigate);
   };
 
   return (
@@ -31,7 +32,7 @@ function ModalBasic({ setModalOpen, name }: PropsType) {
           <span style={{ marginBottom: "1rem" }}>
             <span style={{ fontWeight: "bold" }}>{name}</span> 님, 반갑습니다.
           </span>
-          <button className={styles.ModalBtn} onClick={onLogOut}>
+          <button className={styles.ModalBtn} onClick={ModalLogOut}>
             로그아웃
           </button>
         </div>
@@ -47,5 +48,5 @@ function ModalBasic({ setModalOpen, name }: PropsType) {
       <div className={styles.Background}></div>
     </div>
   );
-}
+};
 export default ModalBasic;
