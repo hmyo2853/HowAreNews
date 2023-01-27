@@ -12,27 +12,23 @@ import styles from "./Auth.module.sass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 import logoPng from "../assets/main_logo.png";
+import SignUp from "../components/auth/SignUp";
+import SignIn from "../components/auth/SignIn";
 
 const Auth = () => {
-  const [email, setEmail] = useState<string>("");
-  const [name, setName] = useState<string>("");
-  const [pwd, setPwd] = useState<string>("");
   const [newAccount, setNewAccount] = useState<boolean>(true);
+  const [email, setEmail] = useState<string>("");
+  const [pwd, setPwd] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [checkErr, setCheckErr] = useState<string>("");
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target.id;
-    const value = e.target.value;
-    // email input change
-    if (target === "email") {
-      // 특수문자 @._-  + 알파벳만 허용
-      setEmail(value);
-    } else if (target === "password") {
-      // password input change
-      setPwd(value);
-    } else if (target === "name") {
-      setName(value);
+  /** 하위 컴포넌트 signin, signup에서 email, name, pwd string을 받아오는 함수 */
+  const highFunction = (email: string, pwd: string, name?: string) => {
+    setEmail(email);
+    setPwd(pwd);
+    if (name !== undefined) {
+      setName(name);
     }
   };
 
@@ -96,48 +92,9 @@ const Auth = () => {
       </div>
       <form>
         {newAccount ? (
-          <>
-            <h2>회원가입</h2>
-            <input
-              type="text"
-              placeholder="이름 *"
-              id="name"
-              onChange={onChange}
-              required
-            />
-            <input
-              type="email"
-              placeholder="이메일 *"
-              id="email"
-              onChange={onChange}
-              required
-            />
-            <input
-              type="password"
-              placeholder="비밀번호 *"
-              id="password"
-              onChange={onChange}
-              required
-            />
-          </>
+          <SignUp propsFn={highFunction} />
         ) : (
-          <>
-            <h2>로그인</h2>
-            <input
-              type="email"
-              placeholder="이메일 *"
-              id="email"
-              onChange={onChange}
-              required
-            />
-            <input
-              type="password"
-              placeholder="비밀번호 *"
-              id="password"
-              onChange={onChange}
-              required
-            />
-          </>
+          <SignIn propsFn={highFunction} />
         )}
         <button onClick={onSubmit}>{newAccount ? "회원가입" : "로그인"}</button>
       </form>

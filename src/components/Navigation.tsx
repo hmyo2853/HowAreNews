@@ -10,6 +10,7 @@ import Modal from "./modals/Modal";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import HeaderLogoPng from "../assets/header_logo.png";
 import MoHeaderLogoPng from "../assets/main_logo.png";
+import { LogOut } from "./auth/LogOut.module";
 
 // header
 const Navigation = () => {
@@ -30,8 +31,7 @@ const Navigation = () => {
   };
 
   const onLogOut = () => {
-    navigate("/");
-    auth.signOut();
+    LogOut(navigate);
   };
 
   if (modalOpen === true) {
