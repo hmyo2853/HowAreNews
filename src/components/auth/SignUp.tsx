@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 /** 회원가입 컴포넌트 */
-const SignUp = () => {
-  const [email, setEmail] = useState<string>("");
-  const [name, setName] = useState<string>("");
-  const [pwd, setPwd] = useState<string>("");
+const SignUp = (props: any) => {
+  const [signupEmail, setSignupEmail] = useState<string>("");
+  const [signupPwd, setSignupPwd] = useState<string>("");
+  const [signupName, setSignupName] = useState<string>("");
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target.id;
@@ -12,13 +12,14 @@ const SignUp = () => {
     // email input change
     if (target === "email") {
       // 특수문자 @._-  + 알파벳만 허용
-      setEmail(value);
+      setSignupEmail(value);
     } else if (target === "password") {
       // password input change
-      setPwd(value);
+      setSignupPwd(value);
     } else if (target === "name") {
-      setName(value);
+      setSignupName(value);
     }
+    props.propsFn(signupEmail, signupPwd, signupName);
   };
 
   return (
