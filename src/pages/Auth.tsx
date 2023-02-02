@@ -14,6 +14,7 @@ import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 import logoPng from "../assets/main_logo.png";
 import SignUp from "../components/auth/SignUp";
 import SignIn from "../components/auth/SignIn";
+import ErrorText from "../components/auth/ErrorText";
 
 const Auth = () => {
   const [newAccount, setNewAccount] = useState<boolean>(true);
@@ -24,7 +25,7 @@ const Auth = () => {
   const [checkErr, setCheckErr] = useState<string>("");
 
   /** 하위 컴포넌트 signin, signup에서 email, name, pwd string을 받아오는 함수 */
-  const highFunction = (email: string, pwd: string, name?: string) => {
+  const setAuthDataFunction = (email: string, pwd: string, name?: string) => {
     setEmail(email);
     setPwd(pwd);
     if (name !== undefined) {
@@ -92,16 +93,16 @@ const Auth = () => {
       </div>
       <form>
         {newAccount ? (
-          <SignUp propsFn={highFunction} />
+          <SignUp propsFn={setAuthDataFunction} />
         ) : (
-          <SignIn propsFn={highFunction} />
+          <SignIn propsFn={setAuthDataFunction} />
         )}
         <button onClick={onSubmit}>{newAccount ? "회원가입" : "로그인"}</button>
       </form>
+      <ErrorText text={checkErr} />
       <span className={styles.Toggle} onClick={toggleAccount}>
         {newAccount ? "기존 회원 로그인" : "새로 오셨나요?"}
       </span>
-      <div>{checkErr}</div>
       <div className={styles.Btn}>
         <button
           className={styles.google}
