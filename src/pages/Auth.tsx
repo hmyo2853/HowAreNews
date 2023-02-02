@@ -52,6 +52,15 @@ const Auth = () => {
       if (error instanceof Error) {
         setError(error.message);
         // 출력 에러 분기
+        if (name === "" && newAccount) {
+          return setCheckErr("이름를 입력해주세요.");
+        } else if (!regex.test(email)) {
+          return setCheckErr("올바른 이메일 주소를 입력해주세요.");
+        } else if (pwd === "") {
+          return setCheckErr("비밀번호를 입력해주세요.");
+        } else if (pwd.length < 6) {
+          return setCheckErr("비밀번호를 6자 이상 입력해주세요.");
+        }
         if (
           error.message === "Firebase: Error (auth/wrong-password)." ||
           error.message === "Firebase: Error (auth/user-not-found)." ||
@@ -61,15 +70,6 @@ const Auth = () => {
         }
         if (error.message === "Firebase: Error (auth/invalid-email).") {
           return setCheckErr("이미 가입된 계정입니다. 로그인 해주세요.");
-        }
-        if (name === "" && newAccount) {
-          return setCheckErr("이름를 입력해주세요.");
-        } else if (!regex.test(email)) {
-          return setCheckErr("올바른 이메일 주소를 입력해주세요.");
-        } else if (pwd === "") {
-          return setCheckErr("비밀번호를 입력해주세요.");
-        } else if (pwd.length < 6) {
-          return setCheckErr("비밀번호를 6자 이상 입력해주세요.");
         }
       }
     }
