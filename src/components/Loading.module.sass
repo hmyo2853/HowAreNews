@@ -1,0 +1,24 @@
+@keyframes rotateAnimation
+  0%
+    transform: rotate(0.5turn)
+
+  50%
+    transform: rotate(1turn)
+  
+  100%
+    transform: rotate(1.5turn)
+
+.Loading
+  width: 100%
+  height: 100vh
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  color: gray
+
+  img
+    animation: rotateAnimation 1.4s ease-in-out infinite
+    margin-bottom: 1rem
+
+

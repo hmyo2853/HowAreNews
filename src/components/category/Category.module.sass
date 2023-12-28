@@ -1,0 +1,22 @@
+@import "../../_mixin.scss"
+
+.Category
+  width: 100%
+  max-width: 1280px
+  margin: 30px auto 60px
+
+.CardWrap
+  display: grid
+  grid-template-columns: 25% 25% 25% 25%
+
+@include mobile
+  .CardWrap
+    grid-template-columns: 1fr
+  
+  .Category
+    margin: 60px auto 60px
+
+
+@include tablet
+  .CardWrap
+    grid-template-columns: 1fr 1fr
