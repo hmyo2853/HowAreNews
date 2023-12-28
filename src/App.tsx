@@ -16,7 +16,6 @@ import Navigation from "./components/Navigation";
 import styles from "./App.module.sass";
 import Footer from "./components/Footer";
 import { TopBtn } from "./components/topbtn/TopBtn";
-import Withdrawal from "./pages/Withdrawal";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -44,7 +43,6 @@ export default function App() {
             <Navigation />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/withdrawal" element={<Withdrawal />} />
               <Route path="/lifestyle" element={<LifeStyle />} />
               <Route path="/politics" element={<Politics />} />
               <Route path="/health" element={<Health />} />
@@ -60,7 +58,6 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Auth />} />
-            <Route path="/withdrawal" element={<Withdrawal />} />
             <Route path="/*" element={<Auth />} />
           </Routes>
         </BrowserRouter>
