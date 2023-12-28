@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ToolTip from "../tooltip/ToolTip";
 
 /** 로그인 컴포넌트 */
 const SignIn = (props: any) => {
@@ -21,7 +22,10 @@ const SignIn = (props: any) => {
 
   return (
     <>
-      <h2>로그인</h2>
+      <h2>
+        로그인
+        <ToolTip />
+      </h2>
       <input
         type="email"
         placeholder="이메일"
