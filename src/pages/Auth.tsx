@@ -103,6 +103,7 @@ const Auth = () => {
       <span className={styles.Toggle} onClick={toggleAccount}>
         {newAccount ? "기존 회원 로그인" : "새로 오셨나요?"}
       </span>
+      {/* 가입 인원이 없어 삭제
       <div className={styles.Btn}>
         <button
           className={styles.google}
@@ -118,7 +119,7 @@ const Auth = () => {
         >
           <FontAwesomeIcon color="#222" icon={faGithub} size="2x" />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
