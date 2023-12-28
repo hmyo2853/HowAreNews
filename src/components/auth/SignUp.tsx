@@ -27,21 +27,21 @@ const SignUp = (props: any) => {
       <h2>회원가입</h2>
       <input
         type="text"
-        placeholder="이름 *"
+        placeholder="이름"
         id="name"
         onChange={onChange}
         required
       />
       <input
         type="email"
-        placeholder="이메일 *"
+        placeholder="이메일"
         id="email"
         onChange={onChange}
         required
       />
       <input
         type="password"
-        placeholder="비밀번호 *"
+        placeholder="비밀번호"
         id="password"
         onChange={onChange}
         required

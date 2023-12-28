@@ -24,14 +24,14 @@ const SignIn = (props: any) => {
       <h2>로그인</h2>
       <input
         type="email"
-        placeholder="이메일 *"
+        placeholder="이메일"
         id="email"
         onChange={onChange}
         required
       />
       <input
         type="password"
-        placeholder="비밀번호 *"
+        placeholder="비밀번호"
         id="password"
         onChange={onChange}
         required
