@@ -1,16 +1,12 @@
 import {
-  AuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signInWithPopup,
   updateProfile,
   User,
 } from "firebase/auth";
 import React, { useState } from "react";
-import { auth, Providers } from "../firebase";
+import { auth } from "../firebase";
 import styles from "./Auth.module.sass";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 import logoPng from "../assets/main_logo.png";
 import SignUp from "../components/auth/SignUp";
 import SignIn from "../components/auth/SignIn";
@@ -21,7 +17,6 @@ const Auth = () => {
   const [email, setEmail] = useState<string>("");
   const [pwd, setPwd] = useState<string>("");
   const [name, setName] = useState<string>("");
-  const [error, setError] = useState<string>("");
   const [checkErr, setCheckErr] = useState<string>("");
 
   /** 하위 컴포넌트 signin, signup에서 email, name, pwd string을 받아오는 함수 */
@@ -50,7 +45,6 @@ const Auth = () => {
       }
     } catch (error) {
       if (error instanceof Error) {
-        setError(error.message);
         // 출력 에러 분기
         if (name === "" && newAccount) {
           return setCheckErr("이름를 입력해주세요.");
@@ -75,10 +69,11 @@ const Auth = () => {
     }
   };
 
-  const onSocialLogin = async (provider: AuthProvider) => {
-    if (error !== "") setError("");
-    const data = await signInWithPopup(auth, provider);
-  };
+  // 소셜 로그인 사용하지 않아서 삭제
+  // const onSocialLogin = async (provider: AuthProvider) => {
+  //   if (error !== "") setError("");
+  //   const data = await signInWithPopup(auth, provider);
+  // };
 
   const toggleAccount = () => {
     setNewAccount((prev) => !prev);
@@ -103,7 +98,7 @@ const Auth = () => {
       <span className={styles.Toggle} onClick={toggleAccount}>
         {newAccount ? "기존 회원 로그인" : "새로 오셨나요?"}
       </span>
-      {/* 가입 인원이 없어 삭제
+      {/* 가입 인원이 없어 소셜 로그인 삭제
       <div className={styles.Btn}>
         <button
           className={styles.google}
