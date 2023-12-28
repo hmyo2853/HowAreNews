@@ -11,6 +11,8 @@ import logoPng from "../assets/main_logo.png";
 import SignUp from "../components/auth/SignUp";
 import SignIn from "../components/auth/SignIn";
 import ErrorText from "../components/auth/ErrorText";
+import { useForm } from "react-hook-form";
+// import { useFormContext } from "react-hook-form";
 
 const Auth = () => {
   const [isLoginPage, setIsLoginPage] = useState<boolean>(true);
@@ -18,6 +20,13 @@ const Auth = () => {
   const [pwd, setPwd] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [checkErr, setCheckErr] = useState<string>("");
+  const { getValues, register, watch, handleSubmit } = useForm({
+    mode: "onSubmit",
+    values: {
+      signInEmail: "",
+      signInPwd: "",
+    },
+  });
 
   /** 하위 컴포넌트 signin, signup에서 email, name, pwd string을 받아오는 함수 */
   const setAuthDataFunction = (email: string, pwd: string, name?: string) => {
@@ -69,6 +78,9 @@ const Auth = () => {
     }
   };
 
+  const onSubmitHandler = (data: any) => {
+    console.log(data);
+  };
   // 소셜 로그인 사용하지 않아서 삭제
   // const onSocialLogin = async (provider: AuthProvider) => {
   //   if (error !== "") setError("");
@@ -86,15 +98,13 @@ const Auth = () => {
       <div>
         <img src={logoPng} width="320px" />
       </div>
-      <form>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
         {isLoginPage ? (
           <SignIn propsFn={setAuthDataFunction} />
         ) : (
           <SignUp propsFn={setAuthDataFunction} />
         )}
-        <button onClick={onSubmit}>
-          {isLoginPage ? "로그인" : "회원가입"}
-        </button>
+        <button type="submit">{isLoginPage ? "로그인" : "회원가입"}</button>
       </form>
       <ErrorText text={checkErr} />
       <span className={styles.Toggle} onClick={toggleAccount}>
